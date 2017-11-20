@@ -167,7 +167,7 @@
 	<title>
 	<?php //echo $_SESSION["firstname"] ." " .$_SESSION["lastname"]; ?> veebiprogrammeerimine
 	</title>
-	
+	<p>TEKST</p>
 <hr>
 
 </body>
