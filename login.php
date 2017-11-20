@@ -158,3 +158,18 @@
 	}
 	$signupYearSelectHTML.= "</select> \n";	
 ?>
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+</head>
+<body>
+	<title>
+	<?php //echo $_SESSION["firstname"] ." " .$_SESSION["lastname"]; ?> veebiprogrammeerimine
+	</title>
+	
+<hr>
+
+</body>
+
+</html>
