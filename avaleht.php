@@ -1,1 +1,0 @@
-teen giti katse
