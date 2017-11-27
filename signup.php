@@ -162,19 +162,21 @@
 <html>
 <head>
 	<meta charset="utf-8">
-</head>
-<body style="background-color:powderblue;">
 	<title>
 	<?php //echo $_SESSION["firstname"] ." " .$_SESSION["lastname"]; ?>
 	</title>
-	<p style="text-align:center;">Teretulemast meie suurepärasesse poodi!</p>
+	<link rel="stylesheet" type="text/css" href="style/general.css">
+</head>
+<body>
+	<p class="center">Teretulemast meie suurepärasesse poodi!</p>
 <hr>
 
 	
-	<h2 style="text-align:center;">Loo uus kasutaja</h2>
+	<h2 class="center">Loo uus kasutaja</h2>
 	<hr><br><br>
+	<div class="centerOnPage">
 	
-	<form style="text-align:center;" method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+	<form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
 		<label>Eesnimi </label>
 		<input name="signupFirstName" type="text" value="<?php echo $signupFirstName; ?>">
 		<span><?php echo $notice; ?></span>
@@ -207,9 +209,9 @@
 		
 
 		
-		<input style="font-size:200%;" name="signupButton" type="submit" value="Loo kasutaja">
+		<input name="signupButton" type="submit" value="Loo kasutaja">
 	</form>
-
+	</div>
 </body>
 
 </html>
