@@ -1,1 +1,1 @@
-teen giti katse
+dkfksjf
