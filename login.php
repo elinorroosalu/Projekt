@@ -1,6 +1,6 @@
 <?php
-	require("../../vpconfig.php");
-	require("functions.php");
+	require("../../config.php");
+	require("function.php");
 	
 	//kui on juba sisse logitud
 	if(isset($_SESSION["userId"])){
