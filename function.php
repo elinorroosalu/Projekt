@@ -36,12 +36,12 @@
 		return $notice;
 	}	
 	
-	function signUp($signupFirstName, $signupFamilyName, $signupUsername, $signupBirthDate, $gender, $signupEmail, $signupPassword){
+	function signUp($signupFirstName, $signupFamilyName, $signupUsername, $signupPassword, $signupBirthDate, $gender, $signupEmail ){
 		
 		$mysqli = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
-		$stmt = $mysqli->prepare("INSERT INTO login (First_Name, Last_Name, Username, Birthday, Gender, Email, Password) VALUES (?, ?, ?, ?, ?, ?, ?)");
+		$stmt = $mysqli->prepare("INSERT INTO login (First_name, Last_name, Username, Password, Birthday, Gender, Email) VALUES (?, ?, ?, ?, ?, ?, ?)");
 		echo $mysqli->error;
-		$stmt->bind_param("ssssiss", $signupFirstName, $signupFamilyName, $signupUsername, $signupBirthDate, $gender, $signupEmail $signupPassword);
+		$stmt->bind_param("sssssis", $signupFirstName, $signupFamilyName, $signupUsername, $signupPassword, $signupBirthDate, $gender, $signupEmail);
 		if ($stmt->execute()){
 			echo "Õnnestus!";
 		} else {
@@ -57,23 +57,5 @@
 		$data = htmlspecialchars($data);
 		return $data;	
 	}	
-	
-	//Kirjelduse salvestamine
-	function saveDescript($heading, $descript){
-		$notice = "";
-		$mysqli = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
-		$stmt = $mysqli->prepare("INSERT INTO market (UserID, Heading, Descript) VALUES(?, ?, ?)");
-		echo $mysqli->error;
-		$stmt->bind_param("iss", $_SESSION["UserID"], $heading, $descript);
-		if($stmt->execute()){
-			$notice = "Kuulutus on lisatud!";
-		} else {
-			$notice = "Kuulutuse lisamisel tekkis tõrge: " .$stmt->error;
-		}
-	
-	$stmt->close();
-	$mysqli->close();
-	return $notice;
-	}
 	
 ?>

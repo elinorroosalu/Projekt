@@ -2,11 +2,11 @@
 	require("../../config.php");
 	require("function.php");
 	
-	//kui on juba sisse logitud
+	/*kui on juba sisse logitud
 	if(isset($_SESSION["userId"])){
 		header("Location: main.php");
 		exit();
-	}	
+	}	*/
 	
 	$signupFirstName = "";
 	$signupFamilyName = "";
@@ -108,7 +108,7 @@
 		$signupPassword = hash("sha512", $_POST["signupPassword"]);
 		
 		//kutsun salvestamise funktsiooni
-		signUp($signupFirstName, $signupFamilyName, $signupBirthDate, $gender, $signupEmail, $signupUsername, $signupPassword);
+		signUp($signupFirstName, $signupFamilyName, $signupUsername, $signupPassword, $signupBirthDate, $gender, $signupEmail);
 		
 	}
 	
@@ -163,30 +163,18 @@
 <head>
 	<meta charset="utf-8">
 </head>
-<body>
+<body style="background-color:powderblue;">
 	<title>
 	<?php //echo $_SESSION["firstname"] ." " .$_SESSION["lastname"]; ?>
 	</title>
-	<p>TEKST</p>
+	<p style="text-align:center;">Teretulemast meie suurepärasesse poodi!</p>
 <hr>
 
-<h2>Logi sisse.</h2>
 	
-	<form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
-		
-		<input name="loginEmail" placeholder="Kasutajanimi" type="email" value="<?php //echo $loginEmail; ?>">
-		<span><?php echo $notice; ?></span>
-		
-		<input name="loginPassword" placeholder="Salasõna" type="password">
-		<br><br>
-		<input name="loginButton" type="submit" value="Logi sisse"> 
-		<span><?php echo $notice; ?></span>
-	</form>
+	<h2 style="text-align:center;">Loo uus kasutaja</h2>
+	<hr><br><br>
 	
-	<h2>Loo kasutaja</h2>
-	
-	
-	<form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+	<form style="text-align:center;" method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
 		<label>Eesnimi </label>
 		<input name="signupFirstName" type="text" value="<?php echo $signupFirstName; ?>">
 		<span><?php echo $notice; ?></span>
@@ -196,19 +184,18 @@
 		<span><?php echo $notice; ?></span>
 		<br><br>
 		<label>Kasutajanimi </label>
-		<input name="signupUsername" placeholder="Kasutajanimi" type="username">
+		<input name="signupUsername" type="username">
 		<span><?php echo $notice; ?></span>
 		<br><br>
 		<label>Salasõna </label>
-		<input name="signupPassword" placeholder="Salasõna" type="password">
+		<input name="signupPassword" type="password">
 		<span><?php echo $notice; ?></span>
 		<br><br>
 		<label>Teie sünnikuupäev </label>
-		<?php echo $signupDaySelectHTML. $signupYearSelectHTML. $signupMonthSelectHTML; ?>
+		<?php echo $signupDaySelectHTML. $signupMonthSelectHTML. $signupYearSelectHTML ; ?>
 		<span><?php echo $notice; ?></span>
 		<br><br>
 		<label>Sugu</label><span><?php echo $notice; ?></span>
-		
 		<input type="radio" name="gender" value="1" <?php if ($gender == '1') {echo 'checked';} ?>><label>Mees</label> <!-- Kõik läbi POST'i on string!!! -->
 		<input type="radio" name="gender" value="2" <?php if ($gender == '2') {echo 'checked';} ?>><label>Naine</label>
 		<br><br>
@@ -216,11 +203,11 @@
 		<label>Kasutajanimi (E-post)</label>
 		<input name="signupEmail" type="email" value="<?php echo $signupEmail; ?>">
 		<span><?php echo $notice; ?></span>
-		<br><br>
+		<br><br><br><br>
 		
 
 		
-		<input name="signupButton" type="submit" value="Loo kasutaja">
+		<input style="font-size:200%;" name="signupButton" type="submit" value="Loo kasutaja">
 	</form>
 
 </body>
