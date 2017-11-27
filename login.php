@@ -165,10 +165,63 @@
 </head>
 <body>
 	<title>
-	<?php //echo $_SESSION["firstname"] ." " .$_SESSION["lastname"]; ?> veebiprogrammeerimine
+	<?php //echo $_SESSION["firstname"] ." " .$_SESSION["lastname"]; ?>
 	</title>
 	<p>TEKST</p>
 <hr>
+
+<h2>Logi sisse.</h2>
+	
+	<form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+		
+		<input name="loginEmail" placeholder="Kasutajanimi" type="email" value="<?php //echo $loginEmail; ?>">
+		<span><?php echo $notice; ?></span>
+		
+		<input name="loginPassword" placeholder="Salasõna" type="password">
+		<br><br>
+		<input name="loginButton" type="submit" value="Logi sisse"> 
+		<span><?php echo $notice; ?></span>
+	</form>
+	
+	<h2>Loo kasutaja</h2>
+	
+	
+	<form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+		<label>Eesnimi </label>
+		<input name="signupFirstName" type="text" value="<?php echo $signupFirstName; ?>">
+		<span><?php echo $notice; ?></span>
+		<br><br>
+		<label>Perekonnanimi </label>
+		<input name="signupFamilyName" type="text" value="<?php echo $signupFamilyName; ?>">
+		<span><?php echo $notice; ?></span>
+		<br><br>
+		<label>Kasutajanimi </label>
+		<input name="signupUsername" placeholder="Kasutajanimi" type="username">
+		<span><?php echo $notice; ?></span>
+		<br><br>
+		<label>Salasõna </label>
+		<input name="signupPassword" placeholder="Salasõna" type="password">
+		<span><?php echo $notice; ?></span>
+		<br><br>
+		<label>Teie sünnikuupäev </label>
+		<?php echo $signupDaySelectHTML. $signupYearSelectHTML. $signupMonthSelectHTML; ?>
+		<span><?php echo $notice; ?></span>
+		<br><br>
+		<label>Sugu</label><span><?php echo $notice; ?></span>
+		
+		<input type="radio" name="gender" value="1" <?php if ($gender == '1') {echo 'checked';} ?>><label>Mees</label> <!-- Kõik läbi POST'i on string!!! -->
+		<input type="radio" name="gender" value="2" <?php if ($gender == '2') {echo 'checked';} ?>><label>Naine</label>
+		<br><br>
+		
+		<label>Kasutajanimi (E-post)</label>
+		<input name="signupEmail" type="email" value="<?php echo $signupEmail; ?>">
+		<span><?php echo $notice; ?></span>
+		<br><br>
+		
+
+		
+		<input name="signupButton" type="submit" value="Loo kasutaja">
+	</form>
 
 </body>
 
