@@ -167,7 +167,7 @@
 	<title>
 	<?php //echo $_SESSION["firstname"] ." " .$_SESSION["lastname"]; ?>
 	</title>
-	<p style="text-align:center;">Teretulemast meie suurepärasesse poodi!</p>
+	<p style="text-align:center;">Tere tulemast meie suurepärasesse poodi!</p>
 <hr>
 
 	

@@ -4,7 +4,7 @@
 	
 	session_start();
 	
-	function signIn($username, $password){
+	function logIn($username, $password){
 		$notice = "";
 		
 		$mysqli = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
