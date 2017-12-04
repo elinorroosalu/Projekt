@@ -51,6 +51,7 @@ $id="";
 <html>
 <head>
 	<meta charset="utf-8">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
 </head>
 <body>
 <h1>EGJ VEEBIPOOD</h3>
