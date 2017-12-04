@@ -2,11 +2,8 @@
 
 require("function.php");
 require("../../config.php");
-		//kui pole sisse logitud, liigume login lehele
-		if(isset($_SESSION["ID"])){
-			header("Location: market.php");
-			exit();
-		}
+		
+
 		
 		
 	//muutujad
@@ -31,7 +28,7 @@ $id="";
 				$notice ="NB! Sisselogimiseks on vajalik kasutajanimi!";
 			} else {
 				$loginUserName = $_POST["UserName"];
-				echo "Sisse logitud";
+				//echo "Sisse logitud";
 		}
 	}
 	if(!empty($loginUserName) and !empty($_POST ["Password"])){
@@ -40,8 +37,11 @@ $id="";
 	}
 	}//if loginButton
 
-	
-
+		//kui on sisse logitud, liigume market lehele
+	if(isset($_SESSION["ID"])){
+		header("Location: market.php");
+		exit();
+	}
 
 	
 	
