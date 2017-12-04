@@ -9,7 +9,7 @@
 		
 		$mysqli = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
 		
-		$stmt = $mysqli->prepare("SELECT ID, Username, Password FROM login WHERE Username = ?");
+		$stmt = $mysqli->prepare("SELECT ID, Username, First_Name, Password FROM login WHERE Username = ?");
 		$stmt->bind_param("s", $username);
 		$stmt->bind_result($id, $usernameFromDb, $passwordFromDb);
 		$stmt->execute();
@@ -18,8 +18,9 @@
 			if($password == $passwordFromDb){
 				$notice = "Sisse logitud!";
 				
-				$_SESSION["userId"] = $id;
+				$_SESSION["ID"] = $id;
 				$_SESSION["userName"] = $usernameFromDb;
+				$_SESSION["First_Name"] =$signupFirstnameFromDb;
 				
 				header("Location: market.php");
 				exit();
@@ -44,8 +45,11 @@
 		$stmt->bind_param("sssssis", $signupFirstName, $signupFamilyName, $signupUsername, $signupPassword, $signupBirthDate, $gender, $signupEmail);
 		if ($stmt->execute()){
 			echo "Õnnestus!";
+<<<<<<< HEAD
 			logIn($signupUsername, $signupPassword);
 			header ("Location: market.php");
+=======
+>>>>>>> a5b431d9d1e7a2e2aba2f376c2998f68a0ab0b19
 		} else {
 			echo "Tekkis viga: " .$stmt->error;
 		}
