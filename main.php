@@ -28,12 +28,13 @@ $id="";
 				$notice ="NB! Sisselogimiseks on vajalik kasutajanimi!";
 			} else {
 				$loginUserName = $_POST["UserName"];
-				//echo "Sisse logitud";
+				echo "Sisse logitud";
 		}
 	}
 	if(!empty($loginUserName) and !empty($_POST ["Password"])){
 		$hash = hash("sha512", $_POST["Password"]);
-		$notice = logIn($loginUserName, $hash);
+		logIn($loginUserName, $hash);
+		//echo "Sisse logitud";
 	}
 	}//if loginButton
 
