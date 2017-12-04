@@ -2,11 +2,11 @@
 	require("../../config.php");
 	require("function.php");
 	
-	//kui on juba sisse logitud
+	/*kui on juba sisse logitud
 	if(isset($_SESSION["userId"])){
-		header("Location: main.php");
+		header("Location: login.php");
 		exit();
-	}	
+	}	*/
 	
 	
 	$signupFirstName = "";
@@ -180,7 +180,7 @@
 </head>
 <body>
 	<p class="center">Teretulemast meie suurepärasesse poodi!</p>
-
+	
 <hr>
 
 
