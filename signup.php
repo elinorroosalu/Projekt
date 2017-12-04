@@ -8,6 +8,8 @@
 		exit();
 	}	
 	
+	//PROOOOV
+	
 	$signupFirstName = "";
 	$signupFamilyName = "";
 	$signupEmail = "";
@@ -166,14 +168,24 @@
 	<title>
 	<?php //echo $_SESSION["firstname"] ." " .$_SESSION["lastname"]; ?>
 	</title>
+<<<<<<< HEAD
 
 	<p style="text-align:center;">Tere tulemast meie suurepärasesse poodi!</p>
 
+=======
+<<<<<<< HEAD
+	<p style="text-align:center;">Tere tulemast meie suurepärasesse poodi!</p>
+=======
+>>>>>>> 1dd79facfc97f15e711dc230c30e8052c268e479
 	<link rel="stylesheet" type="text/css" href="style/general.css">
 </head>
 <body>
 	<p class="center">Teretulemast meie suurepärasesse poodi!</p>
+<<<<<<< HEAD
 
+=======
+>>>>>>> ed31541f2908520b04b0ba27c558cf9be470381a
+>>>>>>> 1dd79facfc97f15e711dc230c30e8052c268e479
 <hr>
 
 	
