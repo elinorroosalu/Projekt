@@ -1,5 +1,5 @@
 <?php
-	require("../../vpconfig.php");
+	require("../vpconfig.php");
 	$database = "if17_veebipood_EGJ";
 	
 	session_start();
