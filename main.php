@@ -36,12 +36,12 @@ $notice = "";
 		$notice = logIn($loginUserName, $hash);
 	}
 	}//if loginButton
-var_dump ($_POST["UserName"]);
+
 	
 	$database = "if17_veebipood_EGJ";  
 		//$_SESSION["userId"] = $id;
 //Tervitab kasutajat nimega	
-	/*	$mysqli = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
+		/*$mysqli = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
 		if ($stmt = $mysqli->prepare("SELECT First_Name FROM login WHERE ID=".$_SESSION["userId"])){
             $stmt->execute();
 		    $stmt->bind_result($signupFirstNameFromDb);
@@ -88,7 +88,7 @@ var_dump ($_POST["UserName"]);
 		<span><?php echo $notice; ?></span>
 
 	
-	<?php echo "Tere ". $_POST["First_Name"];?>
+	<?php echo "Tere ". $_SESSION["First_Name"];?>
 	</form>
 	
 	
