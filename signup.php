@@ -166,14 +166,14 @@
 	<title>
 	<?php //echo $_SESSION["firstname"] ." " .$_SESSION["lastname"]; ?>
 	</title>
-<<<<<<< HEAD
+
 	<p style="text-align:center;">Tere tulemast meie suurepärasesse poodi!</p>
-=======
+
 	<link rel="stylesheet" type="text/css" href="style/general.css">
 </head>
 <body>
 	<p class="center">Teretulemast meie suurepärasesse poodi!</p>
->>>>>>> ed31541f2908520b04b0ba27c558cf9be470381a
+
 <hr>
 
 	
