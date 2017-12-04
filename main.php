@@ -1,16 +1,16 @@
 <?php
 
-		require("function.php");
-		require("../../config.php");
+require("function.php");
+require("../../config.php");
 		//kui pole sisse logitud, liigume login lehele
 		/*if(!isset($_SESSION["userId"])){
 			header("Location: main.php");
 			exit();
 		}*/
 	//muutujad
-	$signupFirstNameFromDb = "";
-	$loginUserName = "";
-	$notice = "";		
+$signupFirstNameFromDb = "";
+$loginUserName = "";
+$notice = "";		
 	
 		/*//väljalogimine
 		if(isset($_GET["logout"])){
@@ -20,6 +20,7 @@
 		*/
 		//alustame sessiooni
 
+
 	if(isset($_POST["loginButton"])) {
 	//kas on kasutajanimi sisestatud
 		if (isset ($_POST["UserName"])){
@@ -27,6 +28,7 @@
 				$notice ="NB! Sisselogimiseks on vajalik kasutajanimi!";
 			} else {
 				$loginUserName = $_POST["UserName"];
+				echo "Sisse logitud";
 		}
 	}
 	if(!empty($loginUserName) and !empty($_POST ["Password"])){
@@ -34,13 +36,13 @@
 		$notice = logIn($loginUserName, $hash);
 	}
 	}//if loginButton
-
+var_dump ($_POST["UserName"]);
 	
 	$database = "if17_veebipood_EGJ";  
 		//$_SESSION["userId"] = $id;
 //Tervitab kasutajat nimega	
-		$mysqli = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
-		if ($stmt = $mysqli->prepare("SELECT ID, First_Name FROM login WHERE ID=".$_SESSION["userId"])){
+	/*	$mysqli = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
+		if ($stmt = $mysqli->prepare("SELECT First_Name FROM login WHERE ID=".$_SESSION["userId"])){
             $stmt->execute();
 		    $stmt->bind_result($signupFirstNameFromDb);
             while ($stmt -> fetch()){
@@ -50,7 +52,7 @@
 		    $stmt->close();
         }
 		$mysqli->close();
-
+*/
 	
 	/*$picDir = "../../pics/";
 	$picFiles = [];
@@ -86,7 +88,7 @@
 		<span><?php echo $notice; ?></span>
 
 	
-	<?php echo "Tere ". $signupFirstNameFromDb;?>
+	<?php echo "Tere ". $_POST["First_Name"];?>
 	</form>
 	
 	
