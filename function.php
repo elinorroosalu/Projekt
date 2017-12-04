@@ -21,7 +21,7 @@
 				$_SESSION["userId"] = $id;
 				$_SESSION["userName"] = $usernameFromDb;
 				
-				header("Location: main.php");
+				header("Location: market.php");
 				exit();
 				
 			} else {
@@ -44,8 +44,8 @@
 		$stmt->bind_param("sssssis", $signupFirstName, $signupFamilyName, $signupUsername, $signupPassword, $signupBirthDate, $gender, $signupEmail);
 		if ($stmt->execute()){
 			echo "Õnnestus!";
-			//logIn($signupUsername, $signupPassword);
-			header ("Location: signup.php");
+			logIn($signupUsername, $signupPassword);
+			header ("Location: market.php");
 		} else {
 			echo "Tekkis viga: " .$stmt->error;
 		}
