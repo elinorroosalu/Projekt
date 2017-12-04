@@ -1,10 +1,10 @@
 <?php
-	require("../vpconfig.php");
+	require("../../config.php");
 	$database = "if17_veebipood_EGJ";
 	
 	session_start();
 	
-	function signIn($username, $password){
+	function logIn($username, $password){
 		$notice = "";
 		
 		$mysqli = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
@@ -36,10 +36,10 @@
 		return $notice;
 	}	
 	
-	function signUp($signupFirstName, $signupFamilyName, $signupUsername, $signupBirthDate, $gender, $signupEmail, $signupPassword){
+	function signUp($signupFirstName, $signupFamilyName, $signupUsername, $signupPassword, $signupBirthDate, $gender, $signupEmail ){
 		
 		$mysqli = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
-		$stmt = $mysqli->prepare("INSERT INTO login (First_name, Last_name, Username, Birthday, Gender, Email, Password) VALUES (?, ?, ?, ?, ?, ?, ?)");
+		$stmt = $mysqli->prepare("INSERT INTO login (First_name, Last_name, Username, Password, Birthday, Gender, Email) VALUES (?, ?, ?, ?, ?, ?, ?)");
 		echo $mysqli->error;
 		$stmt->bind_param("sssssis", $signupFirstName, $signupFamilyName, $signupUsername, $signupPassword, $signupBirthDate, $gender, $signupEmail);
 		if ($stmt->execute()){
