@@ -22,7 +22,7 @@
 				$_SESSION["userName"] = $usernameFromDb;
 				$_SESSION["First_Name"] =$signupFirstnameFromDb;
 				
-				header("Location: main.php");
+				header("Location: market.php");
 				exit();
 				
 			} else {

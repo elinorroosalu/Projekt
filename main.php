@@ -3,13 +3,12 @@
 require("function.php");
 require("../../config.php");
 		//kui pole sisse logitud, liigume login lehele
-		/*if(!isset($_SESSION["userId"])){
-			header(
-		}*/
+		if(isset($_SESSION["ID"])){
+			header("Location: market.php");
+			exit();
+		}
 		
 		
-
-
 	//muutujad
 $signupFirstNameFromDb = "";
 $loginUserName = "";
@@ -53,6 +52,7 @@ $id="";
 	<meta charset="utf-8">
 </head>
 <body>
+<h1>EGJ VEEBIPOOD</h3>
 <h3>Logi sisse.</h3>
 	
 	<form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
@@ -66,7 +66,6 @@ $id="";
 		<span><?php echo $notice; ?></span>
 
 	
-	<?php echo "Tere ". $signupFirstNameFromDb;?>
 	</form>
 	
 	
