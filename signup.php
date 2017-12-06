@@ -120,7 +120,7 @@
 			signUp($signupFirstName, $signupFamilyName, $signupUsername, $signupPassword, $signupBirthDate, $gender, $signupEmail);
 			
 		}
-	
+	echo '<center> Sign Up form successfully submitted. </center>';
 	}
 
 	
@@ -170,60 +170,79 @@
 ?>
 <!DOCTYPE html>
 <html>
-<head>
-	<meta charset="utf-8">
-	<title>
-	<?php //echo $_SESSION["firstname"] ." " .$_SESSION["lastname"]; ?>
-	</title>
 
+<head>
+	<meta charset="utf-8">	
+	<title>Uus kasutaja</title>
 	<link rel="stylesheet" type="text/css" href="style/general.css">
 </head>
 <body>
-	<p class="center">Teretulemast meie suurepärasesse poodi!</p>
-	
-<hr>
-
-
-	<h2 class="center">Registreeri end kasutajaks</h2>
-	<hr><br><br>
-	<div class="centerOnPage">
+<h2 align="center" >Registreeri end kasutajaks</h2>
+	<table bgcolor="#f2f2f3" style="padding:50px" align="center" width="600px">
 	
 	<form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
-		<label>Eesnimi </label>
-		<input name="signupFirstName" type="text" value="<?php echo $signupFirstName; ?>">
-		<br><span><?php echo $signupFirstNameError; ?></span>
-		<br><br>
-		<label>Perekonnanimi </label>
-		<input name="signupFamilyName" type="text" value="<?php echo $signupFamilyName; ?>">
-		<br><span><?php echo $signupFamilyNameError; ?></span>
-		<br><br>
-		<label>Kasutajanimi </label>
-		<input name="signupUsername" type="username">
-		<br><span><?php echo $signupUserNameError; ?></span>
-		<br><br>
-		<label>Salasõna </label>
-		<input name="signupPassword" type="password">
-		<br><span><?php echo $signupPasswordError; ?></span>
-		<br><br>
-		<label>Teie sünnikuupäev </label>
-		<?php echo $signupDaySelectHTML. $signupMonthSelectHTML. $signupYearSelectHTML ; ?>
-		<br><span><?php echo $signupBirthDayError; ?></span>
-		<br><br>
-		<label>Sugu</label>
-		<input type="radio" name="gender" value="1" <?php if ($gender == '1') {echo 'checked';} ?>><label>Mees</label> <!-- Kõik läbi POST'i on string!!! -->
-		<input type="radio" name="gender" value="2" <?php if ($gender == '2') {echo 'checked';} ?>><label>Naine</label>
-		<br><span><?php echo $signupGenderError; ?></span><br><br>
 		
-		<label>E-post</label>
+		<tr>
+		<td align="right">Eesnimi </td>
+		<td><input name="signupFirstName" type="text" value="<?php echo $signupFirstName; ?>"></td>
+		</tr><span><?php echo $signupFirstNameError; ?></span>
+		<br><br>
+		
+		<tr>
+		<td align="right">Perekonnanimi </td>
+		<td><input name="signupFamilyName" type="text" value="<?php echo $signupFamilyName; ?>">
+		</td>
+		</tr><span><?php echo $signupFamilyNameError; ?></span>
+		<br><br>
+		
+		<tr>
+		<td align="right">Kasutajanimi </td>
+		<td>
+		<input name="signupUsername" type="username" value="<?php echo $signupFamilyName; ?>">
+		</td>
+		</tr><span><?php echo $signupUserNameError; ?></span>
+		<br><br>
+		
+		<tr>
+		<td align="right">Salasõna </td>
+		<td>
+		<input name="signupPassword" type="password">
+		</td>
+		</tr><span><?php echo $signupPasswordError; ?></span>
+		<br><br>
+		
+		<tr>
+		<td align="right">Sünnikuupäev </td>
+		<td>
+		<?php echo $signupDaySelectHTML. $signupMonthSelectHTML. $signupYearSelectHTML ; ?></td>
+		</tr><span><?php echo $signupBirthDayError; ?></span>
+		<br><br>
+		
+		<tr>
+		<td align="right">Sugu</td>
+		<td>
+		<input type="radio" name="gender" value="1" <?php if ($gender == '1') {echo 'checked';} ?>><label>Mees</label> 
+		<input type="radio" name="gender" value="2" <?php if ($gender == '2') {echo 'checked';} ?>><label>Naine</label>
+		</td>
+		</tr><span><?php echo $signupGenderError; ?></span><br><br>
+		
+		<tr>
+		<td align="right">E-post</td>
+		<td>
 		<input name="signupEmail" type="email" value="<?php echo $signupEmail; ?>">
-		<br><span><?php echo $signupEmailError; ?></span>
-		<br><br><br><br>
+		</td>
+		</tr><span><?php echo $signupEmailError; ?></span>
+		<br><br>
 		
 
+		<tr>
+		<td class="button" align="center" colspan="2"><input type="submit" name="submit" value="Registreeri"></td> 
+		</tr>
 		
-		<input name="signupButton" type="submit" value="Loo kasutaja">
+		
 	</form>
-	</div>
+	</table>
+
 </body>
 
 </html>
