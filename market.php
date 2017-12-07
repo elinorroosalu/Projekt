@@ -37,7 +37,7 @@
 
 	<link rel="stylesheet" type="text/css" href="style/modal.css">
 	<link rel="stylesheet" type="text/css" href="style/general.css">
-	<script type="text/javascript" src="javascript/modalImage.js" defer></script>
+	<script type="text/javascript" src="javascript/modal.js" defer></script>
 </head>
 <body class="bg-dark">
 	<div class="container-fluid text-white">
@@ -50,7 +50,7 @@
 	<p><a href="main.php">Pealeht</a></p>
 	</div>
 	<div class="col-sm-8">
-	<h2>Kõikide kasutajate avaldatavad fotod</h2>
+	<h2>Kõik kuulutused</h2>
 	
 	<!-- The Modal W3schools eeskujul-->
 	<div id="myModal" class="modal">
@@ -68,7 +68,7 @@
 	<td class="half leftLink">
 	<?php
 		if($_GET["page"] > 1){
-			echo '<a href="?page=' .($_GET["page"] - 1) .'">Eelmised pildid</a>';
+			echo '<a href="?page=' .($_GET["page"] - 1) .'">Eelmised kuulutused</a>';
 		}
 		
 	?>
@@ -76,7 +76,7 @@
 	<td class="half rightLink">
 	<?php
 		if($imageCount > $_GET["page"] * $limit){
-			echo '<a href="?page=' .($_GET["page"] + 1) .'">Järgmised pildid</a>';
+			echo '<a href="?page=' .($_GET["page"] + 1) .'">Järgmised kuulutused</a>';
 		}
 		
 	?>
