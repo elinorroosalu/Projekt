@@ -52,8 +52,8 @@
 		     }
 		    echo "Õnnestus!";
 			
-			//logIn($signupUsername, $signupPassword);
-			//header("Location: market.php");
+			logIn($signupUsername, $signupPassword);
+			header("Location: market.php");
 		   
 		} else {
 			echo "Tekkis viga: " .$stmt->error;

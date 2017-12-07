@@ -176,52 +176,45 @@
 	<title>
 	<?php //echo $_SESSION["firstname"] ." " .$_SESSION["lastname"]; ?>
 	</title>
-
 	<link rel="stylesheet" type="text/css" href="style/general.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
 </head>
-<body>
-	<p class="center">Teretulemast meie suurepärasesse poodi!</p>
-	
-<hr>
-
-
+<body class="bg-info">
+<div align="center" class="container-fluid text-white">
 	<h2 class="center">Registreeri end kasutajaks</h2>
-	<hr><br><br>
-	<div class="centerOnPage">
-	
+	<hr><br>
+		
 	<form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
 		<label>Eesnimi </label>
 		<input name="signupFirstName" type="text" value="<?php echo $signupFirstName; ?>">
-		<br><span><?php echo $signupFirstNameError; ?></span>
+		<span><?php echo $signupFirstNameError; ?></span>
 		<br><br>
 		<label>Perekonnanimi </label>
 		<input name="signupFamilyName" type="text" value="<?php echo $signupFamilyName; ?>">
-		<br><span><?php echo $signupFamilyNameError; ?></span>
+		<span><?php echo $signupFamilyNameError; ?></span>
 		<br><br>
 		<label>Kasutajanimi </label>
 		<input name="signupUsername" type="username">
-		<br><span><?php echo $signupUserNameError; ?></span>
+		<span><?php echo $signupUserNameError; ?></span>
 		<br><br>
 		<label>Salasõna </label>
 		<input name="signupPassword" type="password">
-		<br><span><?php echo $signupPasswordError; ?></span>
+		<span><?php echo $signupPasswordError; ?></span>
 		<br><br>
 		<label>Teie sünnikuupäev </label>
 		<?php echo $signupDaySelectHTML. $signupMonthSelectHTML. $signupYearSelectHTML ; ?>
-		<br><span><?php echo $signupBirthDayError; ?></span>
+		<span><?php echo $signupBirthDayError; ?></span>
 		<br><br>
 		<label>Sugu</label>
-		<input type="radio" name="gender" value="1" <?php if ($gender == '1') {echo 'checked';} ?>><label>Mees</label> <!-- Kõik läbi POST'i on string!!! -->
+		<input type="radio" name="gender" value="1" <?php if ($gender == '1') {echo 'checked';} ?>><label>Mees</label> 
 		<input type="radio" name="gender" value="2" <?php if ($gender == '2') {echo 'checked';} ?>><label>Naine</label>
-		<br><span><?php echo $signupGenderError; ?></span><br><br>
-		
+		<span><?php echo $signupGenderError; ?></span>
+		<br><br>
 		<label>E-post</label>
 		<input name="signupEmail" type="email" value="<?php echo $signupEmail; ?>">
-		<br><span><?php echo $signupEmailError; ?></span>
-		<br><br><br><br>
-		
-
-		
+		<span><?php echo $signupEmailError; ?></span>
+		<br><br>
+				
 		<input name="signupButton" type="submit" value="Loo kasutaja">
 	</form>
 	</div>

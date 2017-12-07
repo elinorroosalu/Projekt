@@ -52,9 +52,11 @@ $id="";
 <html>
 <head>
 	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="style/general.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
 </head>
-<body>
+<body class="bg-info">
+<div align="center" class="container-fluid text-white">
 <h1>EGJ VEEBIPOOD</h3>
 <h3>Logi sisse.</h3>
 	
@@ -67,12 +69,13 @@ $id="";
 		<input name="loginButton" type="submit" value="Logi sisse"> 
 		<span><?php echo $notice; ?></span>
 	</form>
-
+	
 <br><br>
 <h4>Pole veel kasutajat?</h4>
+<div class="d-md-inline-block bg-light">
 <p><a href="signup.php">Tee uus kasutaja</a></p>
-	
-	
+</div>	
+</div>	
 </body>
 </html>
 	
