@@ -46,10 +46,15 @@
 		echo $mysqli->error;
 		$stmt->bind_param("sssssis", $signupFirstName, $signupFamilyName, $signupUsername, $signupPassword, $signupBirthDate, $gender, $signupEmail);
 		if ($stmt->execute()){
-			echo "Õnnestus!";
+			 if(isset($_SESSION["ID"])){
+		        header("Location: market.php");
+		        exit();
+		     }
+		    echo "Õnnestus!";
 			
-			logIn($signupUsername, $signupPassword);
-			header("Location: market.php");
+			//logIn($signupUsername, $signupPassword);
+			//header("Location: market.php");
+		   
 		} else {
 			echo "Tekkis viga: " .$stmt->error;
 		}
