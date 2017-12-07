@@ -47,9 +47,9 @@
 		$stmt->bind_param("sssssis", $signupFirstName, $signupFamilyName, $signupUsername, $signupPassword, $signupBirthDate, $gender, $signupEmail);
 		if ($stmt->execute()){
 			echo "Õnnestus!";
-			header("Location: market.php");
-			logIn($signupUsername, $signupPassword);
 			
+			logIn($signupUsername, $signupPassword);
+			header("Location: market.php");
 		} else {
 			echo "Tekkis viga: " .$stmt->error;
 		}
