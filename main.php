@@ -72,9 +72,9 @@ $id="";
 	
 <br><br>
 <h4>Pole veel kasutajat?</h4>
-<div class="d-md-inline-block bg-light">
-<p><a href="signup.php">Tee uus kasutaja</a></p>
-</div>	
+
+<button><a href="signup.php">Tee uus kasutaja</a></button>
+
 </div>	
 </body>
 </html>

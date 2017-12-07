@@ -182,6 +182,9 @@
 <body class="bg-info">
 <div align="center" class="container-fluid text-white">
 	<h2 class="center">Registreeri end kasutajaks</h2>
+
+<button><a href="main.php">Tagasi pealehele</a></button>
+	
 	<hr><br>
 		
 	<form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
