@@ -119,6 +119,7 @@
 			//kutsun salvestamise funktsiooni
 			signUp($signupFirstName, $signupFamilyName, $signupUsername, $signupPassword, $signupBirthDate, $gender, $signupEmail);
 			
+			
 		}
 	
 	}
