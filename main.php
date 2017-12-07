@@ -1,14 +1,17 @@
 <?php
+    require("../../config.php");
+    require("function.php");
 
-require("function.php");
-require("../../config.php");
-		
-
-		
+		//kui on sisse logitud, liigume market lehele
+	if(isset($_SESSION["ID"])){
+		header("Location: market.php");
+		exit();
+	}		
 		
 	//muutujad
 $signupFirstNameFromDb = "";
-$loginUserName = "";
+$username = "";
+$loginUserNameError = "";
 $notice = "";
 $id="";		
 	
@@ -19,30 +22,28 @@ $id="";
 		}
 		*/
 		//alustame sessiooni
+		
 
 
 	if(isset($_POST["loginButton"])) {
 	//kas on kasutajanimi sisestatud
-		if (isset ($_POST["UserName"])){
-			if (empty ($_POST["UserName"])){
-				$notice ="NB! Sisselogimiseks on vajalik kasutajanimi!";
+		if (isset ($_POST["loginUserName"])){
+			if (empty ($_POST["loginUserName"])){
+				$loginUserNameError ="NB! Sisselogimiseks on vajalik kasutajanimi!";
 			} else {
-				$loginUserName = $_POST["UserName"];
-				echo "Sisse logitud";
-		}
-	}
-	if(!empty($loginUserName) and !empty($_POST ["Password"])){
-		$hash = hash("sha512", $_POST["Password"]);
-		logIn($loginUserName, $hash);
-		//echo "Sisse logitud";
-	}
+				$username = $_POST["loginUserName"];
+				//echo "Sisse logitud";
+		    }
+	    }
+	    
+	    if(!empty($username) and !empty($_POST ["loginPassword"])){
+		    //$hash = hash("sha512", $_POST["Password"]);
+		    $notice = logIn($username, $_POST["loginPassword"]);
+		    //echo "Sisse logitud";
+	    }
 	}//if loginButton
 
-		//kui on sisse logitud, liigume market lehele
-	if(isset($_SESSION["ID"])){
-		header("Location: market.php");
-		exit();
-	}
+
 
 	
 	
@@ -59,16 +60,17 @@ $id="";
 	
 	<form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
 		
-		<input name="UserName" placeholder="Kasutajanimi" type="text" >
-		<span><?php echo $notice; ?></span>
+		<input name="loginUserName" placeholder="Kasutajanimi" type="text" value="<?php echo $username; ?>">
 		
-		<input name="loginPassword" placeholder="Salasõna" type="password">
+		<input name="loginPassword" placeholder="Salasõna" type="password"><span></span>
 		<br><br>
 		<input name="loginButton" type="submit" value="Logi sisse"> 
 		<span><?php echo $notice; ?></span>
-
-	
 	</form>
+
+<br><br>
+<h4>Pole veel kasutajat?</h4>
+<p><a href="signup.php">Tee uus kasutaja</a></p>
 	
 	
 </body>
