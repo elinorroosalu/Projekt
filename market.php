@@ -14,6 +14,8 @@
 		session_destroy(); //lõpetab sessiooni
 		header("Location: main.php");
 	}
+
+/* AJUTISELT
 	
 	//piltide lehekülgede kontroll
 	if(!isset($imageCount)){
@@ -30,7 +32,7 @@
 			header("Location: ?page=" .ceil($imageCount / $limit));
 		}
 	}
-	require("header.php");
+	require("header.php"); */
 ?>
 
 	<link rel="stylesheet" type="text/css" href="style/modal.css">
@@ -40,7 +42,7 @@
 <body class="bg-dark">
 	<div class="container-fluid text-white">
 	<?php
-		require("top_part.php");
+		//require("top_part.php");
 	?>
 	<div class="row">
 	<div class="col-sm-2">
