@@ -2,7 +2,7 @@
 require("../../config.php");
 require("function.php");
 require("editmarketfunction.php");
-require("photoClass.php");
+require("classes/photoClass.php");
 $database = "if17_veebipood_EGJ";
 
 		
@@ -27,15 +27,15 @@ $uploadOk = 1;
 $imageFileType = "";
 //pathinfo($target_file,PATHINFO_EXTENSION)
 $notice = "";
+$thumbs_dir = "../../thumbnails/";
+$thumb_file = "";
+$thumbsize = 100;
 $maxWidth = 600;
 $maxHeight = 400;
 $marginVer = 10;
 $marginHor = 10; 
 
-/*$thumb_width = 100;
-$target_dir = "../../pics/";
-$thumb_dir = "../../thumbs/";
-$thumb_file = "";*/
+/*$thumb_width = 100;*/
 
 
 //Kas vajutati üleslaadimise nuppu (Kontrollib, kas pilt on päris või mitte)
@@ -106,6 +106,7 @@ if(isset($_POST["submit"])) {
 				//$myPhoto->addTextWatermark($myPhoto->exifToImage);
 				$myPhoto->addTextWatermark("EGJ");
 				$notice = $myPhoto->savePhoto($target_dir, $target_file);
+				$notice .= $myPhoto->createThumbnail($thumbs_dir, $thumb_file, $thumbsize, $thumbsize);
 				if($notice =="true"){
 					$notice = "Pilt laeti üles";
 				} else {
@@ -114,7 +115,13 @@ if(isset($_POST["submit"])) {
 				//$myPhoto->saveOriginal(kataloog, failinimi);
 				$myPhoto->clearImages();
 				unset($myPhoto); //unustatakse kõik mis klassis töötasid
-				
+				//lisame andmebaasi
+				if(isset($_POST["Descript"]) and !empty($_POST["Descript"])){
+					$alt = $_POST["Descript"];
+				} else {
+					$alt = "Foto";
+				}
+				addPhotoData($target_file, $thumb_file, $alt, $_POST["privacy"]);
             }
         } else {
             $notice = "Palun valige kõigepealt pildifail";
@@ -169,7 +176,7 @@ if(isset($_POST["submit"])) {
 
 <form action="editmarket.php" method="POST" enctype="multipart/form-data" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
     <input name="ID" type="hidden" value="<?php echo $_GET["ID"]; ?>">
-	<label>Vali pilt: </lable>
+	<label>Vali pilt: </label>
     <input type="file" name="fileToUpload" id="fileToUpload">
     <br>
 	<label>Kuulutuse pealkiri: </label>
@@ -177,6 +184,11 @@ if(isset($_POST["submit"])) {
 	<br>
 	<label> Toote kirjeldus: </label>
 	<textarea name="Descript" rows="5" type="text"></textarea>
+	<br>
+	<input type="radio" name="privacy" value="1">
+	<label>&nbsp; Avalik &nbsp;</label>
+	<input type="radio" name="privacy" value="2">
+	<label>&nbsp; Registreeritud kasutajatele &nbsp;</label>
 	<br>
 	<input name="submit" type="submit" value="Salvesta kuulutus!" id="photoSubmit"><span id="fileSizeError"></span><span><?php echo $notice;?></span>
 </form>

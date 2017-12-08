@@ -48,7 +48,7 @@
             //Funktsioon piltidest erinevate suuruste saamiseks
             $this->myImage = $this->resize_image($this->myTempImage, $imageWidth, $imageHeight, round($imageWidth/$sizeRatio), round($imageHeight/$sizeRatio));	
 		}
-		/*private function resize_image($image, $origW, $origH, $w, $h){
+		private function resize_image($image, $origW, $origH, $w, $h){
 			$dst = imagecreatetruecolor($w, $h);
 			//Säilitan png jaoks läbipaistvuse
 			imagesavealpha($dst, true); //säilitab läbipaistvuseta
@@ -56,7 +56,7 @@
 			imageFill($dst, 0, 0, $transColor);
 			imagecopyresampled($dst, $image, 0, 0, 0, 0, $w, $h, $origW, $origH);
 			return $dst;
-		}*/
+		}
 		
 		public function addWatermark($marginHor, $marginVer){
 			//Lisame vesimärgi
