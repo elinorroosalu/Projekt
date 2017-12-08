@@ -156,14 +156,15 @@ if(isset($_POST["submit"])) {
 <head>
     <meta charset="utf-8">
     <title>EGJ veebipood</title>
-
+	<link rel="stylesheet" type="text/css" href="style/general.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
 <script type="text/javascript" src="javascript/checkFileSize.js" defer></script>
 </head>
-<body>
-
-    <h2>Lisa uus toode</h2>
- 	<p><a href="market.php">Pealeht</a></p>   
-	<p><a href="?logout=1">Logi välja</a></p> 
+<body class="bg-info">
+<div align="center" class="container-fluid text-white">
+    <h2>Lisa uus toode</h2><br>
+ 	<button><a href="market.php">Pealeht</a></button>   
+	<button><a href="?logout=1">Logi välja</a></button><br><br>
 
 
 <form action="editmarket.php" method="post" enctype="multipart/form-data">
@@ -174,10 +175,11 @@ if(isset($_POST["submit"])) {
 	<input name="Heading" type="text">
 	<br>
 	<label> Toote kirjeldus: </label>
-	<textarea name="Descript" type="text"></textarea>
+	<textarea name="Descript" rows="5" type="text"></textarea>
 	<br>
 	<input name="submit" type="submit" value="Salvesta kuulutus!" id="photoSubmit"><span id="fileSizeError"></span><span><?php echo $notice;?></span>
 </form>
-
+</div>
+<img src="<?php //echo $target_file; ?>" >
 </body>
 </html>
