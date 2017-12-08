@@ -132,7 +132,7 @@ if(isset($_POST["submit"])) {
 
 		// kui klõpsati uuendamise nuppu
 		if(isset($_POST["adBtn"])){
-			updateAd($_POST["ID"], test_input($_POST["Heading"]), test_input($_POST["Descript"]));
+			updateAd($_POST["id"], test_input($_POST["Heading"]), test_input($_POST["Descript"]));
 			//header("Location: ?id=" .$_POST["id"]); //Peale salvestamist jääb samale lehele
 			header("Location: market.php"); //peale salvestamist läheb tagasi marketi lehele
 			exit();
@@ -167,8 +167,9 @@ if(isset($_POST["submit"])) {
 	<button><a href="?logout=1">Logi välja</a></button><br><br>
 
 
-<form action="editmarket.php" method="post" enctype="multipart/form-data">
-    <label>Vali pilt: </lable>
+<form action="editmarket.php" method="POST" enctype="multipart/form-data" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+    <input name="ID" type="hidden" value="<?php echo $_GET["ID"]; ?>">
+	<label>Vali pilt: </lable>
     <input type="file" name="fileToUpload" id="fileToUpload">
     <br>
 	<label>Kuulutuse pealkiri: </label>
