@@ -85,7 +85,7 @@
             //imagecolorallocate - ilma läbipaistvuseta
             //alpha 0 - 127   
             $textColor = imagecolorallocatealpha($this->myImage, 255, 255, 255, 50);
-            imagettftext($this->myImage, 20, 0, 10, 25, $textColor, "../../graphics/TIMES.TTF", $text);
+            imagettftext($this->myImage, 20, 0, 10, 25, $textColor, "style/TIMES (2017).TTF", $text);
 		}
 		
 		public function savePhoto ($directory, $fileName){
