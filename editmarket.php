@@ -27,15 +27,13 @@ $uploadOk = 1;
 $imageFileType = "";
 //pathinfo($target_file,PATHINFO_EXTENSION)
 $notice = "";
-$thumbs_dir = "../../thumbnails/";
+$thumbs_dir = "thumbs/";
 $thumb_file = "";
 $thumbsize = 100;
 $maxWidth = 600;
 $maxHeight = 400;
 $marginVer = 10;
 $marginHor = 10; 
-
-/*$thumb_width = 100;*/
 
 
 //Kas vajutati üleslaadimise nuppu (Kontrollib, kas pilt on päris või mitte)
@@ -51,6 +49,7 @@ if(isset($_POST["submit"])) {
             //$target_file = $target_dir . pathinfo(basename($_FILES["fileToUpload"]["name"]))["filename"] ."_" . $timestamp ."." .$imageFileType;
             //$target_file = $target_dir . "hmv_" . $timestamp ."." .$imageFileType;
 			$target_file = "egj_" .$timestamp ."." .$imageFileType;
+			$thumb_file = "egj_" .$timestamp .".jpg";
             //Thumbnailid
             /*$imageFileType = strtolower(pathinfo(basename($_FILES["fileToUpload"]["name"]))["extension"]);
             $timestamp = microtime(1) *10000;
@@ -60,17 +59,17 @@ if(isset($_POST["submit"])) {
         
             $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
             if($check !== false) {
-                $notice = "Fail on pilt -" . $check["mime"] . ".";
+                $notice .= "Fail on pilt - " . $check["mime"] . ".";
                 $uploadOk = 1;
             } else {
-                $notice = "Üleslaetud fail ei ole pilt.";
+                $notice .= "Üleslaetud fail ei ole pilt.";
                 $uploadOk = 0;
             }
         
         
             //Kontrollib, kas fail on kaustas juba olemas
             if(file_exists($target_file)) {
-                $notice = "Samanimeline fail on juba olemas. ";
+                $notice .= "Samanimeline fail on juba olemas. ";
                 $uploadOk = 0;
             }
 
@@ -82,13 +81,13 @@ if(isset($_POST["submit"])) {
 
             //Kontrollib faili formaati
             if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif" ) {
-                $notice = "Lubatud on ainult jpg, jpeg, png ja gif formaadis failid.";
+                $notice .= "Lubatud on ainult jpg, jpeg, png ja gif formaadis failid.";
                 $upload = 0;
             }
 			//Kas saab laadida
             //Kontrollib kas $uploadOk on errori käigus pandud 0-ks
             if($uploadOk == 0) {
-                $notice = " Faili ei laetud üles.";
+                $notice .= " Faili ei laetud üles.";
         
             } else {
                 //Kui kõik on korras laadi fail üles, teeb koopia tempfaili
@@ -98,23 +97,24 @@ if(isset($_POST["submit"])) {
                     $notice = "Vabandust, tekkis error.";
                 }*/
             
-				//Kasutame klassi
-				$myPhoto = new Photoupload($_FILES["fileToUpload"]["tmp_name"], $imageFileType);
-				$myPhoto->readExif();
-				$myPhoto->resizeImage($maxWidth, $maxHeight);
-				//$myPhoto->addWatermark($marginHor, $marginVer);
-				//$myPhoto->addTextWatermark($myPhoto->exifToImage);
-				$myPhoto->addTextWatermark("EGJ");
-				$notice = $myPhoto->savePhoto($target_dir, $target_file);
-				$notice .= $myPhoto->createThumbnail($thumbs_dir, $thumb_file, $thumbsize, $thumbsize);
-				if($notice =="true"){
-					$notice = "Pilt laeti üles";
+				    //Kasutame klassi
+				    $myPhoto = new Photoupload($_FILES["fileToUpload"]["tmp_name"], $imageFileType);
+				    $myPhoto->readExif();
+				    $myPhoto->resizeImage($maxWidth, $maxHeight);
+				    //$myPhoto->addWatermark($marginHor, $marginVer);
+				    //$myPhoto->addTextWatermark($myPhoto->exifToImage);
+				    $myPhoto->addTextWatermark("EGJ");
+				    $notice .= $myPhoto->savePhoto($target_dir, $target_file);
+				    $notice .= $myPhoto->createThumbnail($thumbs_dir, $thumb_file, $thumbsize, $thumbsize);
+				    if($notice =="true"){
+					    $notice = "Pilt laeti üles";
 				} else {
 					$notice = "Pilti ei laetud üles";
 				}
 				//$myPhoto->saveOriginal(kataloog, failinimi);
 				$myPhoto->clearImages();
 				unset($myPhoto); //unustatakse kõik mis klassis töötasid
+				
 				//lisame andmebaasi
 				if(isset($_POST["Descript"]) and !empty($_POST["Descript"])){
 					$alt = $_POST["Descript"];

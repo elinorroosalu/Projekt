@@ -14,6 +14,8 @@
 		session_destroy(); //lõpetab sessiooni
 		header("Location: main.php");
 	}
+	
+	$firstnameFromDb="";
 
 /* AJUTISELT
 	
@@ -48,6 +50,7 @@
 	<div class="row">
 	<div class="col-sm-2">
 	<br>
+	<h3>Tere<?php echo " " .$_SESSION["userName"]; ?></h3>
 	<button><a href="?logout=1">Logi välja</a></button><br><br>
 	<button><a href="main.php">Pealeht</a></button><br><br>
 	<button><a href="editmarket.php">Lisa uus kuulutus</a></button>

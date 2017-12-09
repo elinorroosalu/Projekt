@@ -9,7 +9,6 @@
 	}		
 		
 	//muutujad
-$signupFirstNameFromDb = "";
 $username = "";
 $loginUserNameError = "";
 $notice = "";

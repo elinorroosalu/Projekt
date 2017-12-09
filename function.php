@@ -6,13 +6,12 @@
 	
 	function logIn($username, $password){
 		$notice = "";
-        //$vale = "";
 		
 		$mysqli = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
 		
-		$stmt = $mysqli->prepare("SELECT ID, Username, Password FROM login WHERE Username = ?");
+		$stmt = $mysqli->prepare("SELECT ID, First_Name, Username, Password FROM login WHERE Username = ?");
 		$stmt->bind_param("s", $username);
-		$stmt->bind_result($id, $usernameFromDb, $passwordFromDb);
+		$stmt->bind_result($id, $firstnameFromDb, $usernameFromDb, $passwordFromDb);
 		$stmt->execute();
 		
 		if($stmt->fetch()){
@@ -21,8 +20,9 @@
 				$notice = "Sisse logitud!";
 				
 				$_SESSION["ID"] = $id;
+				$_SESSION["First_Name"] =$firstnameFromDb;
 				$_SESSION["userName"] = $usernameFromDb;
-				//$_SESSION["First_Name"] =$signupFirstnameFromDb;
+				
 				
 				header("Location: market.php");
 				exit();
