@@ -68,6 +68,26 @@
 		$data = htmlspecialchars($data);
 		return $data;	
 	}	
+
+	function readUserAds(){
+		$ads = "";
+		$mysqli = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
+		//$stmt = $mysqli->prepare("SELECT idea, ideacolor FROM vp2userideas");//absoluutselt kõigi mõtted
+		//$stmt = $mysqli->prepare("SELECT idea, ideacolor FROM vp2userideas WHERE userid = ?");
+		$stmt = $mysqli->prepare("SELECT ID, Heading, Descript FROM market WHERE ID = ? AND deleted IS NULL ORDER BY ID DESC");
+		$stmt->bind_param("i", $_SESSION["ID"]);
+		
+		$stmt->bind_result($ID, $Heading, $Descript);
+		$stmt->execute();
+		while ($stmt->fetch()){
+			/*$ads .= '<p style="background-color: ' .$Heading .'">' .$Descript .' | <a href="edituserad.php?id=' .$id .'">Toimeta</a>' ."</p> \n"; */
+			//lisame lingi:  | <a href="edituseridea.php?id=6">Toimeta</a>
+		}
+		
+		$stmt->close();
+		$mysqli->close();
+		return $ads;
+	}
 	function latestPicture($privacy){
 		//$privacy = 1;
 		$html = "<p>Värskeid avalikke pilte pole! Vabandame!</p>";
