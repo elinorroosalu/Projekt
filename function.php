@@ -214,7 +214,7 @@
 		$mysqli = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
 		$stmt = $mysqli->prepare("INSERT INTO photos (userid, filename, thumbnail, alt, privacy) VALUES (?, ?, ?, ?, ?)");
 		echo $mysqli->error;
-		$stmt->bind_param("isssi", $_SESSION["userId"], $filename, $thumbname, $alt, $privacy);
+		$stmt->bind_param("isssi", $_SESSION["ID"], $filename, $thumbname, $alt, $privacy);
 		//$stmt->execute();
 		if ($stmt->execute()){
 			$GLOBALS["notice"] .= "Foto andmete lisamine andmebaasi õnnestus! ";
