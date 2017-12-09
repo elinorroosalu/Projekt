@@ -14,7 +14,7 @@ $database = "if17_veebipood_EGJ";
 		
 	//väljalogimine
 	if(isset($_GET["logout"])){
-		session_destroy(); //lõpetab sessiooni
+		session_destroy(); 
 		header("Location: main.php");
 	}
 	
@@ -106,38 +106,42 @@ if(isset($_POST["submit"])) {
 				    $myPhoto->addTextWatermark("EGJ");
 				    $notice .= $myPhoto->savePhoto($target_dir, $target_file);
 				    $notice .= $myPhoto->createThumbnail($thumbs_dir, $thumb_file, $thumbsize, $thumbsize);
-				    if($notice =="true"){
+				    /*if($notice =="true"){
 					    $notice = "Pilt laeti üles";
-				} else {
-					$notice = "Pilti ei laetud üles";
-				}
-				//$myPhoto->saveOriginal(kataloog, failinimi);
-				$myPhoto->clearImages();
-				unset($myPhoto); //unustatakse kõik mis klassis töötasid
-				
-				//lisame andmebaasi
-				if(isset($_POST["Descript"]) and !empty($_POST["Descript"])){
-					$alt = $_POST["Descript"];
-				} else {
-					$alt = "Foto";
-				}
-				addPhotoData($target_file, $thumb_file, $alt, $_POST["privacy"]);
-            }
+				    } else {
+					    $notice = "Pilti ei laetud üles";
+				    }*/
+				    //$myPhoto->saveOriginal(kataloog, failinimi);
+				    $myPhoto->clearImages();
+				    unset($myPhoto); //unustatakse kõik mis klassis töötasid
+				    
+				    //kas vajutati kirjelduse salvestamise nuppu
+		            if(isset($_POST["submit"])){
+			            if(isset($_POST["Heading"]) and isset($_POST["Descript"]) and !empty($_POST["Heading"]) and !empty($_POST["Descript"])){
+				            //echo $_POST["ideaColor"];
+				            $notice = saveAd($_POST["ID"], test_input($_POST["Heading"]), test_input($_POST["Descript"]));
+			            }
+		            }
+				    
+				    
+				    //lisame andmebaasi
+				    if(isset($_POST["Descript"]) and !empty($_POST["Descript"])){
+					        $alt = $_POST["Descript"];
+				    } else {
+					        $alt = "Foto";
+				    }
+				    addPhotoData($target_file, $thumb_file, $alt, $_POST["privacy"]);
+				    
+              }
         } else {
             $notice = "Palun valige kõigepealt pildifail";
         }//kas faili nimi on olemas lõppeb
         
 }//"Kas üles laadida" lõppeb
 
-        //kas vajutati kirjelduse salvestamise nuppu
-		if(isset($_POST["submit"])){
-			if(isset($_POST["Heading"]) and isset($_POST["Descript"]) and !empty($_POST["Heading"]) and !empty($_POST["Descript"])){
-				//echo $_POST["ideaColor"];
-				$notice = saveAd($_POST["ID"], test_input($_POST["Heading"]), test_input($_POST["Descript"]));
-			}
-		}
 
-		// kui klõpsati uuendamise nuppu
+
+/*		// kui klõpsati uuendamise nuppu
 		if(isset($_POST["adBtn"])){
 			updateAd($_POST["id"], test_input($_POST["Heading"]), test_input($_POST["Descript"]));
 			//header("Location: ?id=" .$_POST["id"]); //Peale salvestamist jääb samale lehele
@@ -150,7 +154,7 @@ if(isset($_POST["submit"])) {
 			deleteAd($_GET["id"]);
 			header("Location: market.php"); //peale salvestamist läheb tagasi marketi lehele
 			exit();
-		}
+		}*/
 		
 		//$ad = getSingAd($_GET["id"]); //Kas siin on vaja????
 
@@ -192,6 +196,7 @@ if(isset($_POST["submit"])) {
 	<br>
 	<input name="submit" type="submit" value="Salvesta kuulutus!" id="photoSubmit"><span id="fileSizeError"></span><span><?php echo $notice;?></span>
 </form>
+
 </div>
 <img src="<?php //echo $target_file; ?>" >
 </body>

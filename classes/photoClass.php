@@ -46,7 +46,7 @@
                 $sizeRatio = $imageHeight / $height;
             }
             //Funktsioon piltidest erinevate suuruste saamiseks
-            $this->myImage = $this->resize_image($this->myTempImage, $imageWidth, $imageHeight, round($imageWidth/$sizeRatio), round($imageHeight/$sizeRatio));	
+            $this->myImage = $this->resize_image($this->myTempImage, $imageWidth, $imageHeight, 0, 0, round($imageWidth/$sizeRatio), round($imageHeight/$sizeRatio));	
 		}
 		private function resize_image($image, $origW, $origH, $origX, $origY, $w, $h){
 			$dst = imagecreatetruecolor($w, $h);

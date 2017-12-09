@@ -43,7 +43,7 @@
 	function updateAd($ID, $Heading, $Descript){
 		$mysqli = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
 		$stmt = $mysqli->prepare("UPDATE market SET Heading=?, Descript=? WHERE ID=?");
-		$stmt->bind_param("iss", $ID, $Heading, $Descript);
+		$stmt->bind_param("ssi", $Heading, $Descript, $ID);
 		if($stmt->execute()){
 			echo "Õnnestus";
 		} else {
