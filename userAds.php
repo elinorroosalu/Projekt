@@ -5,7 +5,7 @@
 	$ads = "";
 
 	//kui pole sisse logitud, liigume login lehele
-	if(!isset($_SESSION["userId"])){
+	if(!isset($_SESSION["ID"])){
 		header("Location: main.php");
 		exit();
 	}
