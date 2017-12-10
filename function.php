@@ -166,11 +166,11 @@
 		//$stmt = $mysqli->prepare("SELECT filename, thumbnail, alt FROM vpphotos WHERE userid = ?");
 		//$stmt = $mysqli->prepare("SELECT filename, thumbnail, alt FROM vpphotos WHERE privacy < ? ORDER BY id DESC LIMIT " .$skip ."," .$limit);
 		//$stmt = $mysqli->prepare("SELECT First_Name, Last_Name, filename, thumbnail, alt, Descript FROM photos, market, login WHERE photos.userid = login.ID AND market.UserID= login.ID AND photos.privacy < ? ORDER BY photos.id DESC LIMIT " .$skip ."," .$limit);
-		$stmt = $mysqli->prepare("SELECT First_Name, Last_Name, filename, thumbnail, alt, Descript FROM photos, market, login WHERE photos.userid = login.ID AND market.ID= photos.userid AND photos.privacy < ? ORDER BY photos.id DESC LIMIT " .$skip ."," .$limit);
+		$stmt = $mysqli->prepare("SELECT First_Name, Last_Name, filename, thumbnail, Heading, Descript FROM photos, market, login WHERE market.Descript= photos.alt AND photos.userid = login.ID AND photos.privacy < ? ORDER BY photos.id DESC LIMIT " .$skip ."," .$limit);
 		$privacyVal = 2;
 		$stmt->bind_param("i", $privacyVal);
 		//$stmt->bind_result($filename, $thumbnail, $alt);
-		$stmt->bind_result($firstname, $lastname, $filename, $thumbnail, $alt, $descript);
+		$stmt->bind_result($firstname, $lastname, $filename, $thumbnail, $heading, $descript);
 		
 		$stmt->execute();
 				
@@ -181,9 +181,9 @@
 		$html = "\n";
 		while ($stmt->fetch()){
 			$html .= "\t" .'<div class="thumbGallery">' ."\n";
-			$html .= "\t \t" .'<img src="' .$GLOBALS["thumbs_dir"] .$thumbnail .'" alt="' .$descript .'" Descript="' .$descript .'" id="' .$filename .'" class="thumbs" title="' .$firstname ." " .$lastname .'">' ."\n";
+			$html .= "\t \t" .'<img src="' .$GLOBALS["thumbs_dir"] .$thumbnail .'" Heading="' .$heading .'" Descript="' .$descript .'" id="' .$filename .'" class="thumbs" title="' .$firstname ." " .$lastname .'">' ."\n";
 			//$html .= "\t \t <p>" .$firstname ." " .$lastname ."</p> \n";
-			$html .="\t \t <p>" .$alt ."</p>\n";
+			$html .="\t \t <p>" .$heading ."</p>\n";
 			$html .= "\t </div> \n";
 		}
 		
