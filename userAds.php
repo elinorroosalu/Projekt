@@ -33,9 +33,9 @@
 	<div class="col-sm-2">
 	<br>
 	<h3>Tere,<?php echo " " .$_SESSION["userName"]; ?></h3>
-	<button><a href="?logout=1">Logi välja</a></button><br><br>
-	<button><a href="main.php">Pealeht</a></button><br><br>
-	<button><a href="editmarket.php">Lisa uus kuulutus</a></button>
+	<button type="button" class="btn btn-light"><a href="?logout=1">Logi välja</a></button><br><br>
+	<button type="button" class="btn btn-light"><a href="main.php">Pealeht</a></button><br><br>
+	<button type="button" class="btn btn-light"><a href="editmarket.php">Lisa uus kuulutus</a></button>
 	</div>
 	<div class="col-sm-8">
 	<h1>EGJ VEEBIPOOD</h1>
