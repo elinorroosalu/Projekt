@@ -5,7 +5,6 @@
 	$notice = "";
 	$page="";
 	$limit = 20;
-	$userAds="";
 
 	//kui pole sisse logitud, liigume login lehele
 	if(!isset($_SESSION["ID"])){

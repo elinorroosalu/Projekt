@@ -62,7 +62,11 @@
 		<!-- The Close Button -->
 		<span class="close">&times;</span>
 		<!-- Modal Content (The Image) -->
+<<<<<<< HEAD
 		<img class="modal-content" src="photos/" alt="" id="modalImage">
+=======
+		<img class="modal-content modal-reference" src="photos/" alt="" id="modalImage">
+>>>>>>> 91026fe59e1d5eb2760026fe4e0fd7c806261832
 		<!-- Modal Caption (Image Text) -->
 		<div id="caption"></div>
 	</div>
