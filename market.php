@@ -73,7 +73,7 @@
 	<td class="half leftLink">
 	<?php
 		if($_GET["page"] > 1){
-			echo '<a href="?page=' .($_GET["page"] - 1) .'">Eelmised kuulutused</a>';
+			echo '<a href="?page=' .($_GET["page"] - 1) .'">Eelmised pildid</a>';
 		}
 		
 	?>
@@ -81,7 +81,7 @@
 	<td class="half rightLink">
 	<?php
 		if($imageCount > $_GET["page"] * $limit){
-			echo '<a href="?page=' .($_GET["page"] + 1) .'">Järgmised kuulutused</a>';
+			echo '<a href="?page=' .($_GET["page"] + 1) .'">Järgmised pildid</a>';
 		}
 		
 	?>
