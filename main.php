@@ -76,8 +76,8 @@
 
 <button><a href="signup.php">Tee uus kasutaja</a></button>
 <br><br>
-<div>
-<?phpecho latestAds(1);?>
+<div id="myModal" class="modal">
+<?php echo latestAds(1);?>
 </div>
 </div>	
 </body>
