@@ -21,6 +21,7 @@
 
 	//$userAds = showAllThumbnails;
 
+
 ?>
 <DOCTYPE html>
 <html>
