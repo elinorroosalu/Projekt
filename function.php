@@ -73,17 +73,18 @@
 
 	function readUserAds(){
 		$ads = "";
+		$html="Te pole lisanud veel ühtegi kuulutust";
 		$mysqli = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
 		//$stmt = $mysqli->prepare("SELECT idea, ideacolor FROM vp2userideas");//absoluutselt kõigi mõtted
 		//$stmt = $mysqli->prepare("SELECT idea, ideacolor FROM vp2userideas WHERE userid = ?");
-		$stmt = $mysqli->prepare("SELECT filename, Heading, Descript FROM login, photos, market WHERE photos.userid = login.ID AND market.UserID = login.ID AND login.ID = ? AND market.deleted IS NULL ORDER BY market.ID DESC");
+		$stmt = $mysqli->prepare("SELECT filename, thumbnail, Heading, Descript FROM login, photos, market WHERE photos.userid = login.ID AND market.UserID = login.ID AND login.ID = ? AND market.deleted IS NULL ORDER BY market.ID DESC");
 		$stmt->bind_param("i", $_SESSION["ID"]);
-		$stmt->bind_result($ID, $Heading, $Descript);
+		$stmt->bind_result($filename, $thumbnail, $Heading, $Descript);
 		$stmt->execute();
 		while ($stmt->fetch()){
 		    $html .= "\t" .'<div class="thumbGallery">' ."\n";
-			$html .= "\t \t" .'<img src="' .$GLOBALS["thumb_dir"] .$thumbnail .'" alt="' .$alt .'" id="' .$filename .'" class="thumbs" title="' .$firstname ." " .$lastname .'">' ."\n";
-			$html .= "\t \t <p>" .$firstname ." " .$lastname ."</p> \n";
+			$html .= "\t \t" .'<img src="' .$GLOBALS["thumbs_dir"] .$thumbnail .'" Descript="' .$Descript .'" id="' .$filename .'" class="thumbs" title="' .$Heading .'">' ."\n";
+			//$html .= "\t \t <p>" .$firstname ." " .$lastname ."</p> \n";
 			$html .= "\t </div> \n";
 			//<a href="edituserad.php?id=' .$id .'">Toimeta</a>;
 		}
@@ -122,10 +123,10 @@
 		$stmt->execute();
 		//kõik pisipildid
 		if($stmt->fetch()){
-			$html = '<img src="' .$GLOBALS["thumb_dir"] .$thumbnail .'" alt="' .$alt .'" id="' .$filename .'" class="thumbs">' ."\n";
+			$html = '<img src="' .$GLOBALS["thumbs_dir"] .$thumbnail .'" alt="' .$alt .'" id="' .$filename .'" class="thumbs">' ."\n";
 		}
 		while ($stmt->fetch()){
-			$html .= "\t" .'<img src="' .$GLOBALS["thumb_dir"] .$thumbnail .'" alt="' .$alt .'" id="' .$filename .'" class="thumbs">' ."\n";
+			$html .= "\t" .'<img src="' .$GLOBALS["thumbs_dir"] .$thumbnail .'" alt="' .$alt .'" id="' .$filename .'" class="thumbs">' ."\n";
 		}
 		
 		$stmt->close();
@@ -148,10 +149,10 @@
 		
 		//kõik pisipildid
 		if($stmt->fetch()){
-			$html = '<img src="' .$GLOBALS["thumb_dir"] .$thumbnail .'" alt="' .$alt .'" id="' .$filename .'" class="thumbs">' ."\n";
+			$html = '<img src="' .$GLOBALS["thumbs_dir"] .$thumbnail .'" alt="' .$alt .'" id="' .$filename .'" class="thumbs">' ."\n";
 		}
 		while ($stmt->fetch()){
-			$html .= "\t" .'<img src="' .$GLOBALS["thumb_dir"] .$thumbnail .'" alt="' .$alt .'" id="' .$filename .'" class="thumbs">' ."\n";
+			$html .= "\t" .'<img src="' .$GLOBALS["thumbs_dir"] .$thumbnail .'" alt="' .$alt .'" id="' .$filename .'" class="thumbs">' ."\n";
 		}
 		
 		$stmt->close();

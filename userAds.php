@@ -40,7 +40,7 @@
 	<div class="col-sm-8">
 	<h1>EGJ VEEBIPOOD</h1>
 	<h2>Sinu kuulutused</h2>
-		<?php echo $ads; ?>
+		<?php echo readUserAds; ?>
 	</div>
 	</div>
 	</div>
