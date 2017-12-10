@@ -139,15 +139,12 @@
 		$html = "<p>Te pole ise ühtki pilti üles laadinud!</p>";
 		$mysqli = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
 		//$stmt = $mysqli->prepare("SELECT filename, thumbnail, alt FROM vpphotos WHERE userid = ?");
-<<<<<<< HEAD
 		$stmt = $mysqli->prepare("SELECT filename, thumbnail, alt FROM photos WHERE userid = ? ORDER BY id DESC LIMIT " .$skip ."," .$limit);
 		$stmt->bind_param("i", $_SESSION["ID"]);
 		$stmt->bind_result($filename, $thumbnail, $alt);
-=======
 		$stmt = $mysqli->prepare("SELECT filename, thumbnail, Heading, Descript FROM photos, market, login WHERE photos.userid=login.ID AND market.UserID=login.ID AND login.ID=? AND market.Deleted IS NULL ORDER BY market.ID DESC LIMIT " .$skip ."," .$limit);
 		$stmt->bind_param( "i", $_SESSION["ID"]);
 		$stmt->bind_result($filename, $thumbnail, $Heading, $Descript);
->>>>>>> 4a782947a8880d507c7c98440d88672b9b06ffc5
 		
 		$stmt->execute();
 		
