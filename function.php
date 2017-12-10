@@ -94,23 +94,24 @@
 		return $ads;
 	}*/
 
-	function latestPicture($privacy){
-		//$privacy = 1;
+	function latestAds($privacy){
 		$html = "<p>Värskeid avalikke pilte pole! Vabandame!</p>";
 		$mysqli = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
-		$stmt = $mysqli->prepare("SELECT filename, thumbnail, alt FROM photos WHERE id=(SELECT MAX(id) FROM photos WHERE  privacy<=?)");
+		$stmt = $mysqli->prepare("SELECT filename, thumbnail, alt FROM photos WHERE privacy<=?");
 		echo $mysqli->error;
 		$stmt->bind_param("i", $privacy);
 		$stmt->bind_result($filename, $thumbnail, $alt);
 		$stmt->execute();
 		echo $stmt->error;
 		if($stmt->fetch()){
-			
-			$html = '<img src="' .$GLOBALS["target_dir"] .$filename .'" alt="' .$alt .'" class="rounded">';
+			$html = '<img src="' .$GLOBALS["thumbs_dir"] .$thumbnail .'" alt="' .$alt .'" id="' .$filename .'" class="thumbs">' ."\n";
+		}
+		while ($stmt->fetch()){
+			$html .= "\t" .'<img src="' .$GLOBALS["thumbs_dir"] .$thumbnail .'" alt="' .$alt .'" id="' .$filename .'" class="thumbs">' ."\n";
 		}
 		$stmt->close();
 		$mysqli->close();
-		return $html;
+		echo $html;
 	}
 	
 	function showAllThumbnails(){
@@ -215,12 +216,12 @@
 		return $imageCount;
 	}
 	
-	function addPhotoData($filename, $thumbname, $alt, $privacy){
+	function addPhotoData($filename, $thumbnail, $alt, $privacy){
 		//echo $GLOBALS["serverHost"];
 		$mysqli = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
 		$stmt = $mysqli->prepare("INSERT INTO photos (userid, filename, thumbnail, alt, privacy) VALUES (?, ?, ?, ?, ?)");
 		echo $mysqli->error;
-		$stmt->bind_param("isssi", $_SESSION["ID"], $filename, $thumbname, $alt, $privacy);
+		$stmt->bind_param("isssi", $_SESSION["ID"], $filename, $thumbnail, $alt, $privacy);
 		//$stmt->execute();
 		if ($stmt->execute()){
 			$GLOBALS["notice"] .= "Foto andmete lisamine andmebaasi õnnestus! ";
