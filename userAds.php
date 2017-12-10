@@ -3,7 +3,9 @@
 	require("editmarketfunction.php");
 
 	$notice = "";
-	$ads = "";
+	$page="";
+	$limit = 20;
+	$userAds="";
 
 	//kui pole sisse logitud, liigume login lehele
 	if(!isset($_SESSION["ID"])){
@@ -17,9 +19,7 @@
 		header("Location: main.php");
 	}
 
-	
-	//$ads=readUserAds()
-	$html=readUserAds()
+	$userAds = showThumbnailsPage($page, $limit);
 
 ?>
 <DOCTYPE html>
@@ -42,7 +42,7 @@
 	<div class="col-sm-8">
 	<h1>EGJ VEEBIPOOD</h1>
 	<h2>Sinu kuulutused</h2>
-		<?php echo $html //$ads; ?>
+		<?php echo $userAds ?>
 	</div>
 	</div>
 	</div>
