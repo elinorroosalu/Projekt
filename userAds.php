@@ -19,7 +19,7 @@
 		header("Location: main.php");
 	}
 
-	$userAds = showThumbnailsPage($page, $limit);
+	//$userAds = showAllThumbnails;
 
 ?>
 <DOCTYPE html>
@@ -42,7 +42,7 @@
 	<div class="col-sm-8">
 	<h1>EGJ VEEBIPOOD</h1>
 	<h2>Sinu kuulutused</h2>
-		<?php echo $userAds ?>
+		<?php showAllThumbnails(); ?>
 	</div>
 	</div>
 	</div>

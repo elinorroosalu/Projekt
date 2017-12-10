@@ -71,7 +71,7 @@
 		return $data;	
 	}	
 
-	/*function readUserAds(){
+	function readUserAds(){
 		$ads = "";
 		$html="Te pole lisanud veel ühtegi kuulutust";
 		$mysqli = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
@@ -92,7 +92,7 @@
 		$stmt->close();
 		$mysqli->close();
 		return $ads;
-	}*/
+	}
 
 	function latestAds($privacy){
 		$html = "<p>Värskeid avalikke pilte pole! Vabandame!</p>";
@@ -118,7 +118,7 @@
 		$html = "<p>Te pole ise ühtki pilti üles laadinud!</p>";
 		$mysqli = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
 		$stmt = $mysqli->prepare("SELECT filename, thumbnail, alt FROM photos WHERE userid = ?");
-		$stmt->bind_param("i", $_SESSION["userId"]);
+		$stmt->bind_param("i", $_SESSION["ID"]);
 		$stmt->bind_result($filename, $thumbnail, $alt);
 		$stmt->execute();
 		//kõik pisipildid
@@ -139,23 +139,25 @@
 		$html = "<p>Te pole ise ühtki pilti üles laadinud!</p>";
 		$mysqli = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
 		//$stmt = $mysqli->prepare("SELECT filename, thumbnail, alt FROM vpphotos WHERE userid = ?");
-		$stmt = $mysqli->prepare("SELECT filename, thumbnail, Heading, Descript FROM photos, market, login WHERE photos.userid=login.ID AND market.UserID=login.ID AND login.ID=? AND market.Deleted IS NULL ORDER BY market.ID DESC LIMIT " .$skip ."," .$limit);
+		$stmt = $mysqli->prepare("SELECT filename, thumbnail, alt FROM photos WHERE userid = ? ORDER BY id DESC LIMIT " .$skip ."," .$limit);
 		$stmt->bind_param("i", $_SESSION["ID"]);
-		$stmt->bind_result($filename, $thumbnail, $Heading, $Descript);
+		$stmt->bind_result($filename, $thumbnail, $alt);
 		
 		$stmt->execute();
-
+		
+		
+		
+		//kõik pisipildid
+		if($stmt->fetch()){
+			$html = '<img src="' .$GLOBALS["thumbs_dir"] .$thumbnail .'" alt="' .$alt .'" id="' .$filename .'" class="thumbs">' ."\n";
+		}
 		while ($stmt->fetch()){
-		    $html .= "\t" .'<div class="thumbGallery">' ."\n";
-			$html .= "\t \t" .'<img src="' .$GLOBALS["thumbs_dir"] .$thumbnail .'" Descript="' .$Descript .'" id="' .$filename .'" class="thumbs" title="' .$Heading .'">' ."\n";
-			//$html .= "\t \t <p>" .$firstname ." " .$lastname ."</p> \n";
-			$html .= "\t </div> \n";
-			//<a href="edituserad.php?id=' .$id .'">Toimeta</a>;
+			$html .= "\t" .'<img src="' .$GLOBALS["thumbs_dir"] .$thumbnail .'" alt="' .$alt .'" id="' .$filename .'" class="thumbs">' ."\n";
 		}
 		
 		$stmt->close();
 		$mysqli->close();
-		return $html;
+		echo $html;
 	}
 	
 	function showSharedThumbnailsPage($page, $limit){
