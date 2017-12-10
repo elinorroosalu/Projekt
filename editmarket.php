@@ -174,8 +174,8 @@ if(isset($_POST["submit"])) {
 <body class="bg-info">
 <div align="center" class="container-fluid text-white">
     <h2>Lisa uus toode</h2><br>
- 	<button><a href="market.php">Pealeht</a></button>   
-	<button><a href="?logout=1">Logi välja</a></button><br><br>
+ 	<button type="button" class="btn btn-light"><a href="market.php">Pealeht</a></button>   
+	<button type="button" class="btn btn-light"><a href="?logout=1">Logi välja</a></button><br><br>
 
 
 <form action="editmarket.php" method="POST" enctype="multipart/form-data" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
