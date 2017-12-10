@@ -63,9 +63,9 @@
 		<span class="close">&times;</span>
 		<!-- Modal Content (The Image) -->
 
-		<img class="modal-content" src="photos/" alt="" id="modalImage">
+		<img class="modal-content" src="photos/" alt="Heading" id="modalImage">
 
-		<img class="modal-content modal-reference" src="photos/" alt="" id="modalImage">
+		
 
 		<!-- Modal Caption (Image Text) -->
 		<div id="caption"></div>
