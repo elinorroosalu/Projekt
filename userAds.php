@@ -1,5 +1,6 @@
 <?php
 	require("function.php");
+	require("editmarketfunction.php");
 
 	$notice = "";
 	$ads = "";
@@ -17,7 +18,8 @@
 	}
 
 	
-	$ads=readUserAds()
+	//$ads=readUserAds()
+	$html=readUserAds()
 
 ?>
 <DOCTYPE html>
@@ -40,7 +42,7 @@
 	<div class="col-sm-8">
 	<h1>EGJ VEEBIPOOD</h1>
 	<h2>Sinu kuulutused</h2>
-		<?php echo $ads; ?>
+		<?php echo $html //$ads; ?>
 	</div>
 	</div>
 	</div>
