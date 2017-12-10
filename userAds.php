@@ -21,6 +21,7 @@
 
 	$userAds = showThumbnailsPage($page, $limit);
 
+
 ?>
 <DOCTYPE html>
 <html>

@@ -118,7 +118,7 @@
 		$html = "<p>Te pole ise ühtki pilti üles laadinud!</p>";
 		$mysqli = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
 		$stmt = $mysqli->prepare("SELECT filename, thumbnail, alt FROM photos WHERE userid = ?");
-		$stmt->bind_param("i", $_SESSION["userId"]);
+		$stmt->bind_param("i", $_SESSION["ID"]);
 		$stmt->bind_result($filename, $thumbnail, $alt);
 		$stmt->execute();
 		//kõik pisipildid
@@ -140,7 +140,7 @@
 		$mysqli = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
 		//$stmt = $mysqli->prepare("SELECT filename, thumbnail, alt FROM vpphotos WHERE userid = ?");
 		$stmt = $mysqli->prepare("SELECT filename, thumbnail, Heading, Descript FROM photos, market, login WHERE photos.userid=login.ID AND market.UserID=login.ID AND login.ID=? AND market.Deleted IS NULL ORDER BY market.ID DESC LIMIT " .$skip ."," .$limit);
-		$stmt->bind_param("i", $_SESSION["ID"]);
+		$stmt->bind_param( "i", $_SESSION["ID"]);
 		$stmt->bind_result($filename, $thumbnail, $Heading, $Descript);
 		
 		$stmt->execute();
