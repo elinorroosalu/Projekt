@@ -76,9 +76,8 @@
 		$mysqli = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
 		//$stmt = $mysqli->prepare("SELECT idea, ideacolor FROM vp2userideas");//absoluutselt kõigi mõtted
 		//$stmt = $mysqli->prepare("SELECT idea, ideacolor FROM vp2userideas WHERE userid = ?");
-		$stmt = $mysqli->prepare("SELECT filename, Heading, Descript FROM market, photos, login WHERE photos.userid = login.ID AND market.UserID = login.ID AND ID = ? AND deleted IS NULL ORDER BY ID DESC");
+		$stmt = $mysqli->prepare("SELECT filename, Heading, Descript FROM login, photos, market WHERE photos.userid = login.ID AND market.UserID = login.ID AND login.ID = ? AND market.deleted IS NULL ORDER BY market.ID DESC");
 		$stmt->bind_param("i", $_SESSION["ID"]);
-		
 		$stmt->bind_result($ID, $Heading, $Descript);
 		$stmt->execute();
 		while ($stmt->fetch()){
@@ -86,8 +85,7 @@
 			$html .= "\t \t" .'<img src="' .$GLOBALS["thumb_dir"] .$thumbnail .'" alt="' .$alt .'" id="' .$filename .'" class="thumbs" title="' .$firstname ." " .$lastname .'">' ."\n";
 			$html .= "\t \t <p>" .$firstname ." " .$lastname ."</p> \n";
 			$html .= "\t </div> \n";
-			/*$ads .= '<p style="background-color: ' .$Heading .'">' .$Descript .' | <a href="edituserad.php?id=' .$id .'">Toimeta</a>' ."</p> \n"; */
-			//lisame lingi:  | <a href="edituseridea.php?id=6">Toimeta</a>
+			//<a href="edituserad.php?id=' .$id .'">Toimeta</a>;
 		}
 		
 		

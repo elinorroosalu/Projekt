@@ -52,7 +52,8 @@
 	<h3>Tere,<?php echo " " .$_SESSION["userName"]; ?></h3>
 	<button><a href="?logout=1">Logi välja</a></button><br><br>
 	<button><a href="main.php">Pealeht</a></button><br><br>
-	<button><a href="editmarket.php">Lisa uus kuulutus</a></button>
+	<button><a href="editmarket.php">Lisa uus kuulutus</a></button><br><br>
+	<button><a href="userAds.php">Vaata enda kuulutusi</a></button>
 	</div>
 	<div class="col-sm-8">
 	<h2>Kõik kuulutused</h2>
