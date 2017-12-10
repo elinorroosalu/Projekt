@@ -76,15 +76,21 @@
 		$mysqli = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
 		//$stmt = $mysqli->prepare("SELECT idea, ideacolor FROM vp2userideas");//absoluutselt kõigi mõtted
 		//$stmt = $mysqli->prepare("SELECT idea, ideacolor FROM vp2userideas WHERE userid = ?");
-		$stmt = $mysqli->prepare("SELECT ID, Heading, Descript FROM market WHERE ID = ? AND deleted IS NULL ORDER BY ID DESC");
+		$stmt = $mysqli->prepare("SELECT filename, Heading, Descript FROM market, photos, login WHERE photos.userid = login.ID AND market.UserID = login.ID AND ID = ? AND deleted IS NULL ORDER BY ID DESC");
 		$stmt->bind_param("i", $_SESSION["ID"]);
 		
 		$stmt->bind_result($ID, $Heading, $Descript);
 		$stmt->execute();
 		while ($stmt->fetch()){
+		    $html .= "\t" .'<div class="thumbGallery">' ."\n";
+			$html .= "\t \t" .'<img src="' .$GLOBALS["thumb_dir"] .$thumbnail .'" alt="' .$alt .'" id="' .$filename .'" class="thumbs" title="' .$firstname ." " .$lastname .'">' ."\n";
+			$html .= "\t \t <p>" .$firstname ." " .$lastname ."</p> \n";
+			$html .= "\t </div> \n";
 			/*$ads .= '<p style="background-color: ' .$Heading .'">' .$Descript .' | <a href="edituserad.php?id=' .$id .'">Toimeta</a>' ."</p> \n"; */
 			//lisame lingi:  | <a href="edituseridea.php?id=6">Toimeta</a>
 		}
+		
+		
 		
 		$stmt->close();
 		$mysqli->close();
@@ -161,11 +167,11 @@
 		$mysqli = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
 		//$stmt = $mysqli->prepare("SELECT filename, thumbnail, alt FROM vpphotos WHERE userid = ?");
 		//$stmt = $mysqli->prepare("SELECT filename, thumbnail, alt FROM vpphotos WHERE privacy < ? ORDER BY id DESC LIMIT " .$skip ."," .$limit);
-		$stmt = $mysqli->prepare("SELECT First_Name, Last_Name, filename, thumbnail, alt FROM photos, login WHERE photos.userid = login.ID AND photos.privacy < ? ORDER BY photos.id DESC LIMIT " .$skip ."," .$limit);
+		$stmt = $mysqli->prepare("SELECT First_Name, Last_Name, filename, thumbnail, alt, Descript FROM photos, market, login WHERE photos.userid = login.ID AND market.UserID= login.ID AND photos.privacy < ? ORDER BY photos.id DESC LIMIT " .$skip ."," .$limit);
 		$privacyVal = 2;
 		$stmt->bind_param("i", $privacyVal);
 		//$stmt->bind_result($filename, $thumbnail, $alt);
-		$stmt->bind_result($firstname, $lastname, $filename, $thumbnail, $alt);
+		$stmt->bind_result($firstname, $lastname, $filename, $thumbnail, $alt, $descript);
 		
 		$stmt->execute();
 				
@@ -176,7 +182,7 @@
 		$html = "\n";
 		while ($stmt->fetch()){
 			$html .= "\t" .'<div class="thumbGallery">' ."\n";
-			$html .= "\t \t" .'<img src="' .$GLOBALS["thumbs_dir"] .$thumbnail .'" alt="' .$alt .'" id="' .$filename .'" class="thumbs" title="' .$firstname ." " .$lastname .'">' ."\n";
+			$html .= "\t \t" .'<img src="' .$GLOBALS["thumbs_dir"] .$thumbnail .'" alt="' .$alt .'" Descript="' .$descript .'" id="' .$filename .'" class="thumbs" title="' .$firstname ." " .$lastname .'">' ."\n";
 			$html .= "\t \t <p>" .$firstname ." " .$lastname ."</p> \n";
 			$html .= "\t </div> \n";
 		}
