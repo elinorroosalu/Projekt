@@ -77,7 +77,7 @@
 		$mysqli = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
 		//$stmt = $mysqli->prepare("SELECT idea, ideacolor FROM vp2userideas");//absoluutselt kõigi mõtted
 		//$stmt = $mysqli->prepare("SELECT idea, ideacolor FROM vp2userideas WHERE userid = ?");
-		$stmt = $mysqli->prepare("SELECT filename, thumbnail, Heading, Descript FROM login, photos, market WHERE photos.userid = login.ID AND market.UserID = login.ID AND login.ID = ? AND market.deleted IS NULL ORDER BY market.ID DESC");
+		$stmt = $mysqli->prepare("SELECT filename, thumbnail, Heading, Descript FROM login, photos, market WHERE photos.userid = login.ID AND market.UserID = login.ID AND login.ID = ? AND market.Deleted IS NULL ORDER BY market.ID DESC");
 		$stmt->bind_param("i", $_SESSION["ID"]);
 		$stmt->bind_result($filename, $thumbnail, $Heading, $Descript);
 		$stmt->execute();
@@ -89,12 +89,11 @@
 			//<a href="edituserad.php?id=' .$id .'">Toimeta</a>;
 		}
 		
-		
-		
 		$stmt->close();
 		$mysqli->close();
 		return $ads;
 	}
+
 	function latestPicture($privacy){
 		//$privacy = 1;
 		$html = "<p>Värskeid avalikke pilte pole! Vabandame!</p>";
