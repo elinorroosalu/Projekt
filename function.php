@@ -1,6 +1,8 @@
 <?php
 	require("../../config.php");
 	$database = "if17_veebipood_EGJ";
+	$target_dir = "photos/";
+    $thumbs_dir = "thumbs/";
 	
 	session_start();
 	
@@ -133,7 +135,7 @@
 		$mysqli = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
 		//$stmt = $mysqli->prepare("SELECT filename, thumbnail, alt FROM vpphotos WHERE userid = ?");
 		$stmt = $mysqli->prepare("SELECT filename, thumbnail, alt FROM photos WHERE userid = ? ORDER BY id DESC LIMIT " .$skip ."," .$limit);
-		$stmt->bind_param("i", $_SESSION["userId"]);
+		$stmt->bind_param("i", $_SESSION["ID"]);
 		$stmt->bind_result($filename, $thumbnail, $alt);
 		
 		$stmt->execute();
@@ -159,8 +161,8 @@
 		$mysqli = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
 		//$stmt = $mysqli->prepare("SELECT filename, thumbnail, alt FROM vpphotos WHERE userid = ?");
 		//$stmt = $mysqli->prepare("SELECT filename, thumbnail, alt FROM vpphotos WHERE privacy < ? ORDER BY id DESC LIMIT " .$skip ."," .$limit);
-		$stmt = $mysqli->prepare("SELECT firstname, lastname, filename, thumbnail, alt FROM photos, login WHERE photos.userid = login.ID AND photos.privacy < ? ORDER BY photos.id DESC LIMIT " .$skip ."," .$limit);
-		$privacyVal = 3;
+		$stmt = $mysqli->prepare("SELECT First_Name, Last_Name, filename, thumbnail, alt FROM photos, login WHERE photos.userid = login.ID AND photos.privacy < ? ORDER BY photos.id DESC LIMIT " .$skip ."," .$limit);
+		$privacyVal = 2;
 		$stmt->bind_param("i", $privacyVal);
 		//$stmt->bind_result($filename, $thumbnail, $alt);
 		$stmt->bind_result($firstname, $lastname, $filename, $thumbnail, $alt);
@@ -169,12 +171,12 @@
 				
 		//kõik pisipildid
 		/*if($stmt->fetch()){
-			$html = '<img src="' .$GLOBALS["thumb_dir"] .$thumbnail .'" alt="' .$alt .'" id="' .$filename .'" class="thumbs">' ."\n";
+			$html = '<img src="' .$GLOBALS["thumbs_dir"] .$thumbnail .'" alt="' .$alt .'" id="' .$filename .'" class="thumbs">' ."\n";
 		}*/
 		$html = "\n";
 		while ($stmt->fetch()){
 			$html .= "\t" .'<div class="thumbGallery">' ."\n";
-			$html .= "\t \t" .'<img src="' .$GLOBALS["thumb_dir"] .$thumbnail .'" alt="' .$alt .'" id="' .$filename .'" class="thumbs" title="' .$firstname ." " .$lastname .'">' ."\n";
+			$html .= "\t \t" .'<img src="' .$GLOBALS["thumbs_dir"] .$thumbnail .'" alt="' .$alt .'" id="' .$filename .'" class="thumbs" title="' .$firstname ." " .$lastname .'">' ."\n";
 			$html .= "\t \t <p>" .$firstname ." " .$lastname ."</p> \n";
 			$html .= "\t </div> \n";
 		}
@@ -187,7 +189,7 @@
 	function findNumberOfImages(){
 		$mysqli = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
 		$stmt = $mysqli->prepare("SELECT COUNT(*) FROM `photos` WHERE userid = ?");
-		$stmt->bind_param("i", $_SESSION["userId"]);
+		$stmt->bind_param("i", $_SESSION["ID"]);
 		$stmt->bind_result($imageCount);
 		$stmt->execute();
 		$stmt->fetch();

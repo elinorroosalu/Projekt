@@ -1,8 +1,14 @@
-# Projekt
-<<<<<<< HEAD
-Grete, Julika ja Elinori projekt
-tere
-=======
-Grete, Julika ja Elinori projekt. Teeme veebipoe. Plaanis on teha registreerimise lehekülg, kus saab registreeruda.
+# Veebipood
+
+
+Veebirakenduse pilt....
+
+Grete, Julika ja Elinori projekt. 
+Projekti eesmärgiks on teha veebipood, kus inimesed saavad registreeruda kasutajaks ning panna müüki soovitud esemeid.
+
+1 Kasutaja saab sisse logida, kui puudub kasutaja suunatakse registreerumise lehele
+
+
+
 Avalehel saab näha kõiki müügisolevaid asju. Asjade müükilisamise lehekülg tuleb ka. 
->>>>>>> 5bcd0b3db2faad81a82520d5a5551aabff8cc1c6
+

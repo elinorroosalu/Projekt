@@ -17,7 +17,6 @@
 	
 	$firstnameFromDb="";
 
-/* AJUTISELT
 	
 	//piltide lehekülgede kontroll
 	if(!isset($imageCount)){
@@ -34,7 +33,7 @@
 			header("Location: ?page=" .ceil($imageCount / $limit));
 		}
 	}
-	require("header.php"); */
+	//require("header.php");
 ?>
 
 	<link rel="stylesheet" type="text/css" href="style/modal.css">
@@ -96,5 +95,5 @@
 	</div>
 	</div>
 	<?php
-		require("footer.php");
+		//require("footer.php");
 	?>
