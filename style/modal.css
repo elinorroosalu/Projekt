@@ -74,6 +74,16 @@
     animation-duration: 0.6s;
 }
 
+.modal-reference { /* new class */
+    display:none;
+}
+.modal-content img {
+    width: 100%;
+}
+.item-title {
+    display:none;
+}
+
 @keyframes zoom {
     from {transform:scale(0)} 
     to {transform:scale(1)}
