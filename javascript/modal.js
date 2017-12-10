@@ -2,7 +2,7 @@ var modal;
 var modalImg;
 var captionText;
 var span;
-var photoDir = "../../uploads/";
+var photoDir = "../photos/";
 
 window.onload = function(){
 	modal = document.getElementById('myModal');

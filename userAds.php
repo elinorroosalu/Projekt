@@ -35,10 +35,11 @@
 	<h3>Tere,<?php echo " " .$_SESSION["userName"]; ?></h3>
 	<button><a href="?logout=1">Logi välja</a></button><br><br>
 	<button><a href="main.php">Pealeht</a></button><br><br>
+	<button><a href="editmarket.php">Lisa uus kuulutus</a></button>
 	</div>
 	<div class="col-sm-8">
 	<h1>EGJ VEEBIPOOD</h1>
-	<h2>Kuulutused</h2>
+	<h2>Sinu kuulutused</h2>
 		<?php echo $ads; ?>
 	</div>
 	</div>

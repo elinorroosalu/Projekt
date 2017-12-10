@@ -9,10 +9,10 @@
 	}		
 		
 	//muutujad
-$username = "";
-$loginUserNameError = "";
-$notice = "";
-$id="";		
+	$username = "";
+	$loginUserNameError = "";
+	$notice = "";
+	$id="";		
 	
 		/*//väljalogimine
 		if(isset($_GET["logout"])){

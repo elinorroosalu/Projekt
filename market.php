@@ -33,9 +33,9 @@
 			header("Location: ?page=" .ceil($imageCount / $limit));
 		}
 	}
-	//require("header.php");
 ?>
-
+<DOCTYPE html>
+<head>
 	<link rel="stylesheet" type="text/css" href="style/modal.css">
 	<link rel="stylesheet" type="text/css" href="style/general.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
@@ -49,7 +49,7 @@
 	<div class="row">
 	<div class="col-sm-2">
 	<br>
-	<h3>Tere<?php echo " " .$_SESSION["userName"]; ?></h3>
+	<h3>Tere,<?php echo " " .$_SESSION["userName"]; ?></h3>
 	<button><a href="?logout=1">Logi välja</a></button><br><br>
 	<button><a href="main.php">Pealeht</a></button><br><br>
 	<button><a href="editmarket.php">Lisa uus kuulutus</a></button>
@@ -94,6 +94,3 @@
 	</div>
 	</div>
 	</div>
-	<?php
-		//require("footer.php");
-	?>
