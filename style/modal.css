@@ -1,5 +1,4 @@
-.thumbGallery
-{
+.thumbGallery {
 	width: 100px;
 	height: 160px;
 	padding: 5px;
@@ -8,20 +7,14 @@
 	/*display: inline;*/
 }
 
-.thumbs
-{
+.thumbs {
     border-radius: 5px;
     cursor: pointer;
-	opacity: 0.7;
-	transform-origin: 50% 50%;
+    transform-origin: 50% 50%;
     transition: 0.3s;
-	filter: blur(1px);
 }
 
-.thumbs:hover
-{	
-	opacity: 1;
-	filter: none;
+.thumbs:hover {	
 	transform: scale(1.05);
 	/*transform: translate(0px,-3px);*/
 }
@@ -62,7 +55,7 @@
     width: 80%;
     max-width: 700px;
     text-align: center;
-	font-family: arial, sans-serif;
+    font-family: arial, sans-serif;
     color: #ccc;
     padding: 10px 0;
     height: 150px;
