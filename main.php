@@ -56,7 +56,7 @@
 </head>
 <body class="bg-info">
 <div align="center" class="container-fluid text-white">
-<h1>EGJ VEEBIPOOD</h3>
+<h1>EGJ VEEBIPOOD</h1>
 <h3>Logi sisse.</h3>
 	
 	<form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
@@ -76,9 +76,9 @@
 
 <button><a href="signup.php">Tee uus kasutaja</a></button>
 <br><br>
-<?php
-	echo latestAds(1);
-?>
+<div id="myModal" class="modal">
+<?php echo latestAds(1);?>
+</div>
 </div>	
 </body>
 </html>
