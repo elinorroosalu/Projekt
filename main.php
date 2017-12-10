@@ -69,11 +69,16 @@
 		<span><?php echo $notice; ?></span>
 	</form>
 	
-<br><br>
+<br>
+
+<br>
 <h4>Pole veel kasutajat?</h4>
 
 <button><a href="signup.php">Tee uus kasutaja</a></button>
-
+<br><br>
+<?php
+	echo latestAds(1);
+?>
 </div>	
 </body>
 </html>
