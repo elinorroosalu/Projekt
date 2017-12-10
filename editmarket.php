@@ -130,12 +130,8 @@ if(isset($_POST["submit"])) {
 				    } else {
 					        $alt = "Foto";
 				    }
-					if(isset($_POST["Heading"]) and !empty($_POST["Heading"])){
-					        $filename = $_POST["Heading"];
-				    } else {
-					        $filename = "Pealkiri";
-				    }
-				    addPhotoData($filename, $thumb_file, $alt, $_POST["privacy"]);
+					
+				    addPhotoData($target_file, $thumb_file, $alt, $_POST["privacy"]);
 				    
               }
         } else {
