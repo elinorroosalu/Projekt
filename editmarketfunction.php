@@ -36,7 +36,7 @@
 		
 		$stmt->close();
 		$mysqli->close();
-		return $ideaObject;
+		return $adObject;
 		
 	}
 	

@@ -77,7 +77,7 @@
 		$mysqli = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
 		//$stmt = $mysqli->prepare("SELECT idea, ideacolor FROM vp2userideas");//absoluutselt kõigi mõtted
 		//$stmt = $mysqli->prepare("SELECT idea, ideacolor FROM vp2userideas WHERE userid = ?");
-		$stmt = $mysqli->prepare("SELECT filename, thumbnail, Heading, Descript FROM login, photos, market WHERE photos.userid = login.ID AND market.UserID = login.ID AND login.ID = ? AND market.Deleted IS NULL ORDER BY market.ID DESC");
+		$stmt = $mysqli->prepare("SELECT filename, thumbnail, Heading, Descript FROM login JOIN photos ON photos.userid = login.ID JOIN market ON market.UserID = login.ID WHERE login.ID = ? AND market.Deleted IS NULL ORDER BY market.ID DESC");
 		$stmt->bind_param("i", $_SESSION["ID"]);
 		$stmt->bind_result($filename, $thumbnail, $Heading, $Descript);
 		$stmt->execute();
@@ -91,7 +91,7 @@
 		
 		$stmt->close();
 		$mysqli->close();
-		return $ads;
+		return $html;
 	}
 
 	function latestAds($privacy){
@@ -115,7 +115,7 @@
 	}
 	
 	function showAllThumbnails(){
-		$html = "<p>Te pole ise ühtki pilti üles laadinud!</p>";
+		$html = "<p>Te pole ise ühtki kuulutust üles laadinud!</p>";
 		$mysqli = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
 		$stmt = $mysqli->prepare("SELECT filename, thumbnail, alt FROM photos WHERE userid = ?");
 		$stmt->bind_param("i", $_SESSION["ID"]);

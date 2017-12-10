@@ -50,6 +50,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+
 	<meta charset="utf-8">
 	<link rel="stylesheet" type="text/css" href="style/general.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
@@ -76,10 +77,15 @@
 
 <button><a href="signup.php">Tee uus kasutaja</a></button>
 <br><br>
-<div id="myModal" class="modal">
+<div class="col-sm-8">
+<div>
 <?php echo latestAds(1);?>
 </div>
+</div>
 </div>	
+
+
+
 </body>
 </html>
 	
