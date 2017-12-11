@@ -34,7 +34,8 @@
 		}
 	}
 ?>
-<DOCTYPE html>
+<!DOCTYPE html>
+<html>
 <head>
 	<link rel="stylesheet" type="text/css" href="style/modal.css">
 	<link rel="stylesheet" type="text/css" href="style/general.css">
@@ -98,3 +99,5 @@
 	</div>
 	</div>
 	</div>
+</body>
+</html>

@@ -186,7 +186,7 @@
 		$html = "\n";
 		while ($stmt->fetch()){
 			$html .= "\t" .'<div class="thumbGallery">' ."\n";
-			$html .= "\t \t" .'<img src="' .$GLOBALS["thumbs_dir"] .$thumbnail .'" Heading="' .$heading .'" alt="' .$alt .'" id="' .$filename .'" class="thumbs" title="' .$firstname ." " .$lastname .'">' ."\n";
+			$html .= "\t \t" .'<img src="' .$GLOBALS["thumbs_dir"] .$thumbnail .'"  alt="' .$alt .'" id="' .$filename .'" class="thumbs" title="' .$firstname ." " .$lastname .'">' ."\n";
 			//$html .= "\t \t <p>" .$firstname ." " .$lastname ."</p> \n";
 			$html .="\t \t <p>" .$heading ."</p>\n";
 			$html .= "\t </div> \n";

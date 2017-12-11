@@ -2,7 +2,8 @@ var modal;
 var modalImg;
 var captionText;
 var span;
-var photoDir = "../../photos/";
+//var photoDir = "../../photos/";
+var photoDir = "photos/";
 
 window.onload = function(){
 	modal = document.getElementById('myModal');
@@ -22,7 +23,7 @@ function openModal(e){
 	modal.style.display = "block";
     modalImg.src = photoDir + e.target.id;
 	if(e.target.title.length > 0){
-		captionText.innerHTML = e.target.title + ": " + e.target.Heading + "-" +e.target.Descript;
+		captionText.innerHTML = e.target.title + ": " + e.target.alt;
 	} else {
 		captionText.innerHTML = e.target.alt;
 	}
