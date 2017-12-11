@@ -76,7 +76,7 @@ $notice = "";
 	    <br>
 	    <input name="submit" type="submit" value="Salvesta kuulutus!" id="photoSubmit"><span id="fileSizeError"></span><span><?php echo $notice;?></span>
 	</form><br>
-	<a type="button" href="?ID=<?=$_GET["ID"];?>&delete=true">Kustuta see kuulutus</a>
+	<a type="button" href="?id=<?=$_GET["ID"];?>&deleted=true">Kustuta see kuulutus</a>
 	<hr>
 	
 </div>
