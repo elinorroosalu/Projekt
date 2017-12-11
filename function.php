@@ -1,7 +1,7 @@
 <?php
 	require("../../config.php");
 	$database = "if17_veebipood_EGJ";
-	$target_dir = "photos/";
+	$target_dir = "Projekt/photos/";
     $thumbs_dir = "thumbs/";
 	
 	session_start();
@@ -127,6 +127,7 @@
 		}
 		while ($stmt->fetch()){
 			$html .= "\t" .'<img src="' .$GLOBALS["thumbs_dir"] .$thumbnail .'" alt="' .$alt .'" id="' .$filename .'" class="thumbs">' ."\n";
+
 		}
 		
 		$stmt->close();
