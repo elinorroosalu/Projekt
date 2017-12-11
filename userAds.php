@@ -46,7 +46,21 @@
 		<div class="col-sm-8">
 		<h1>EGJ VEEBIPOOD</h1>
 		<h2>Sinu kuulutused</h2>
-			
+		
+		<div id="myModal" class="modal">
+		<!-- The Close Button -->
+		<span class="close">&times;</span>
+		<!-- Modal Content (The Image) -->
+
+		<img class="modal-content" src="photos/" alt="Heading" id="modalImage">
+
+		
+
+		<!-- Modal Caption (Image Text) -->
+		<div id="caption"></div>
+	</div>
+	
+	<div id="allThumbnails">	
 			
 		<div class="container">
 			<?php showAllThumbnails(); ?>

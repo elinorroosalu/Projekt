@@ -13,14 +13,7 @@
 	$loginUserNameError = "";
 	$notice = "";
 	$id="";		
-	
-		/*//väljalogimine
-		if(isset($_GET["logout"])){
-			session_destroy(); //lõpetab sesiooni
-			header("Location: main.php");
-		}
-		*/
-		//alustame sessiooni
+
 		
 
 
@@ -79,7 +72,15 @@
 <br><br>
 <div class="col-sm-8">
 <div>
-<?php echo latestAds(1);?>
+	<div id="myModal" class="modal">
+		<span class="close">&times;</span>
+		<img class="modal-content" src="photos/" alt="Heading" id="modalImage">
+		<div id="caption"></div>
+	</div>
+	
+	<div id="allThumbnails">
+
+	<?php echo latestAds(1);?>
 </div>
 </div>
 </div>	

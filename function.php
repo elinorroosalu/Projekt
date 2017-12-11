@@ -134,7 +134,7 @@
 		echo $html;
 	}
 	
-	function showThumbnailsPage($page, $limit){
+	/*function showThumbnailsPage($page, $limit){
 		$skip = ($page - 1) * $limit;
 		$html = "<p>Te pole ise ühtki pilti üles laadinud!</p>";
 		$mysqli = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
@@ -161,7 +161,7 @@
 		$stmt->close();
 		$mysqli->close();
 		echo $html;
-	}
+	}*/
 	
 	function showSharedThumbnailsPage($page, $limit){
 		$skip = ($page - 1) * $limit;
@@ -170,11 +170,11 @@
 		//$stmt = $mysqli->prepare("SELECT filename, thumbnail, alt FROM vpphotos WHERE userid = ?");
 		//$stmt = $mysqli->prepare("SELECT filename, thumbnail, alt FROM vpphotos WHERE privacy < ? ORDER BY id DESC LIMIT " .$skip ."," .$limit);
 		//$stmt = $mysqli->prepare("SELECT First_Name, Last_Name, filename, thumbnail, alt, Descript FROM photos, market, login WHERE photos.userid = login.ID AND market.UserID= login.ID AND photos.privacy < ? ORDER BY photos.id DESC LIMIT " .$skip ."," .$limit);
-		$stmt = $mysqli->prepare("SELECT First_Name, Last_Name, filename, thumbnail, Heading, Descript FROM photos, market, login WHERE market.Descript= photos.alt AND photos.userid = login.ID AND photos.privacy < ? ORDER BY photos.id DESC LIMIT " .$skip ."," .$limit);
+		$stmt = $mysqli->prepare("SELECT First_Name, Last_Name, filename, thumbnail, alt, Heading FROM photos, market, login WHERE market.Descript= photos.alt AND photos.userid = login.ID AND photos.privacy < ? ORDER BY photos.id DESC LIMIT " .$skip ."," .$limit);
 		$privacyVal = 2;
 		$stmt->bind_param("i", $privacyVal);
 		//$stmt->bind_result($filename, $thumbnail, $alt);
-		$stmt->bind_result($firstname, $lastname, $filename, $thumbnail, $heading, $descript);
+		$stmt->bind_result($firstname, $lastname, $filename, $thumbnail, $alt, $heading);
 		
 		$stmt->execute();
 				
@@ -185,7 +185,7 @@
 		$html = "\n";
 		while ($stmt->fetch()){
 			$html .= "\t" .'<div class="thumbGallery">' ."\n";
-			$html .= "\t \t" .'<img src="' .$GLOBALS["thumbs_dir"] .$thumbnail .'" Heading="' .$heading .'" Descript="' .$descript .'" id="' .$filename .'" class="thumbs" title="' .$firstname ." " .$lastname .'">' ."\n";
+			$html .= "\t \t" .'<img src="' .$GLOBALS["thumbs_dir"] .$thumbnail .'" Heading="' .$heading .'" alt="' .$alt .'" id="' .$filename .'" class="thumbs" title="' .$firstname ." " .$lastname .'">' ."\n";
 			//$html .= "\t \t <p>" .$firstname ." " .$lastname ."</p> \n";
 			$html .="\t \t <p>" .$heading ."</p>\n";
 			$html .= "\t </div> \n";
